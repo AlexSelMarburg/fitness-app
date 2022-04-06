@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --app-background-color: #1c262a;
+  --app-secondary-background-color: #2a2e32;
+
+  --nav-indicator-color: #ffe93b;
+  --nav-dark-light-switch-bgc-color: #ffe93b;
+  --nav-dark-light-switch-color: #1c262a;
+  --nav-text-color: #ffe93b;
+
+  --nav-icons-active-filter-values: invert(100%) sepia(100%) saturate(0%)
+    hue-rotate(320deg) brightness(103%) contrast(102%);
+  --nav-icons-inactive-filter-values: invert(100%) sepia(100%) saturate(0%)
+    hue-rotate(320deg) brightness(103%) contrast(102%);
+
+  --primary-text-color: #fefefe;
+  --secondary-text-color: #fd413c;
+}
+
+.app-container.light {
+  --app-background-color: #233043;
+  --app-secondary-background-color: #dee0e4;
+
+  --nav-indicator-color: #d82733;
+  --nav-dark-light-switch-bgc-color: #d82733;
+  --nav-dark-light-switch-color: #233043;
+  --nav-text-color: #d82733;
+
+  --nav-icons-active-filter-values: invert(100%) sepia(33%) saturate(2%)
+    hue-rotate(327deg) brightness(112%) contrast(101%);
+  --nav-icons-inactive-filter-values: invert(14%) sepia(10%) saturate(2647%)
+    hue-rotate(177deg) brightness(94%) contrast(87%);
+
+  --primary-text-color: #fefefe;
+  --secondary-text-color: #fd413c;
+}
+
+html {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.app-container {
+  background-color: var(--app-background-color);
+  min-height: 100vh;
+  min-width: 100%;
+  padding: 5px;
+  padding-top: 35px;
+}

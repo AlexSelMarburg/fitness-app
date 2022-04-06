@@ -1,0 +1,7 @@
+.container-functionality {
+  width: 100%;
+  height: calc(100vh - 110px);
+  background-color: var(--app-secondary-background-color);
+  margin-top: 10px;
+  border-radius: 10px;
+}
