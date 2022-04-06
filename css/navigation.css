@@ -64,15 +64,15 @@
   font-weight: 500;
   font-size: 1em;
   letter-spacing: 0.05em;
-  transition: 0.5s;
+  transition: 0.3s;
   opacity: 0;
-  transform: translateY(4px);
+  transform: translateY(-5px);
   color: var(--nav-text-color);
 }
 
 .navigation ul li.active a .text {
   opacity: 1;
-  transform: translateY(10);
+  transform: translateY(4px);
 }
 
 .indicator {
