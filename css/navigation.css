@@ -1,47 +1,47 @@
 /* #region NAVIGATION LIST*/
 
 .navigation {
-  width: 100%;
-  height: 60px;
-  background-color: var(--app-secondary-background-color);
-  position: relative;
-  display: flex;
-  justify-content: left;
   align-items: center;
+  background-color: var(--app-secondary-background-color);
   border-radius: 10px;
+  display: flex;
+  height: 60px;
+  justify-content: left;
   padding-left: 17px;
+  position: relative;
+  width: 100%;
 }
 
 .navigation ul {
   display: flex;
-  width: calc(100vw - 105px);
   margin-right: 10px;
+  width: calc(100vw - 105px);
 }
 
 .navigation ul li {
-  position: relative;
-  list-style: none;
-  width: 60px;
   height: 70px;
+  list-style: none;
+  position: relative;
+  width: 60px;
   z-index: 1;
 }
 
 .navigation ul li a {
-  position: relative;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
   flex-direction: column;
-  width: 100%;
-  text-align: center;
   font-weight: 500;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  width: 100%;
 }
 
 .navigation ul li a .icon {
-  position: relative;
   display: block;
-  line-height: 95px;
   font-size: 1.8em;
+  line-height: 95px;
+  position: relative;
   text-align: center;
   transition: 0.5s;
 }
@@ -55,19 +55,19 @@
 }
 
 .navigation ul li.active a .icon {
-  transform: translateY(-36px);
   filter: var(--nav-icons-active-filter-values);
+  transform: translateY(-36px);
 }
 
 .navigation ul li a .text {
-  position: absolute;
+  color: var(--nav-text-color);
   font-weight: 500;
   font-size: 1em;
   letter-spacing: 0.05em;
-  transition: 0.3s;
   opacity: 0;
+  position: absolute;
+  transition: 0.3s;
   transform: translateY(-5px);
-  color: var(--nav-text-color);
 }
 
 .navigation ul li.active a .text {
@@ -76,38 +76,38 @@
 }
 
 .indicator {
-  position: absolute;
-  top: -50%;
-  width: 60px;
-  height: 60px;
   background-color: var(--nav-indicator-color);
   border-radius: 50%;
   border: 6px solid var(--app-background-color);
+  height: 60px;
+  position: absolute;
+  top: -50%;
   transition: 0.5s;
+  width: 60px;
 }
 
 .indicator::before {
+  background-color: transparent;
+  box-shadow: 0px -10px 0 0 var(--app-background-color);
+  border-top-right-radius: 20px;
   content: '';
+  height: 18px;
+  left: -18px;
   position: absolute;
   top: 50%;
-  left: -18px;
   width: 16px;
-  height: 18px;
-  background-color: transparent;
-  border-top-right-radius: 20px;
-  box-shadow: 0px -10px 0 0 var(--app-background-color);
 }
 
 .indicator::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -20px;
-  width: 20px;
-  height: 20px;
   background-color: transparent;
-  border-top-left-radius: 20px;
   box-shadow: 0px -10px 0 0 var(--app-background-color);
+  border-top-left-radius: 20px;
+  content: '';
+  height: 20px;
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  width: 20px;
 }
 
 .navigation ul li:nth-child(1).active ~ .indicator {
@@ -127,18 +127,18 @@
 
 /* #region DARK LIGHT MODE SWITCH */
 .navigation .toggle-switch {
-  display: flex;
   align-items: center;
+  display: flex;
+  height: 100%;
   justify-content: center;
   min-width: 60px;
-  height: 100%;
 }
 .navigation .toggle-switch .switch {
-  position: relative;
-  height: 30px;
-  width: 55px;
-  border-radius: 25px;
   background-color: var(--nav-dark-light-switch-bgc-color);
+  border-radius: 25px;
+  height: 30px;
+  position: relative;
+  width: 55px;
 }
 
 .navigation .toggle-switch .switch::before {
@@ -151,12 +151,34 @@
   top: 5px;
   left: 5px;
   background-color: var(--nav-dark-light-switch-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: '';
 }
+
+/* .navigation .toggle-switch .switch::before {
+  background-size: 20px 20px;
+  background-color: var(--nav-dark-light-switch-color);
+  background-image: url('../moon-icon.png');
+  border-radius: 50%;
+  content: '';
+  display: inline-block;
+  height: 20px;
+  left: 5px;
+  position: absolute;
+  top: 5px;
+  transition: 0.5s;
+  width: 20px;
+} */
 
 .app-container.light .navigation .toggle-switch .switch::before {
   -webkit-transform: translateX(24px);
   -ms-transform: translateX(24px);
   transform: translateX(24px);
+
+  /* background-image: url('../sun-icon.png'); */
 }
 
 /* #endregion */

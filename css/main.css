@@ -1,3 +1,4 @@
 @import 'base.css';
 @import 'navigation.css';
-@import 'functionality-container.css';
+@import 'views-container.css';
+@import 'views/kcal-view.css';
