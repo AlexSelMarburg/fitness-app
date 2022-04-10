@@ -1,7 +1,7 @@
 .kcal-view--container {
   border-radius: inherit;
   display: grid;
-  grid-template-rows: 3fr 1.1fr;
+  grid-template-rows: 3fr 1.2fr;
   height: 100%;
   row-gap: 10px;
   width: 100%;
