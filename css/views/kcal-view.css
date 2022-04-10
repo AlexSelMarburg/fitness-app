@@ -86,7 +86,7 @@
   border: 2px solid var(--nav-indicator-color);
   height: 0;
   overflow: hidden;
-  padding-bottom: 100%;
+  padding-bottom: calc(100% - 4px);
   width: 100%;
   /* background-color: var(--app-background-color); */
 }
@@ -96,7 +96,7 @@
   font-size: 26px;
   font-weight: 500;
   line-height: 38px;
-  margin-top: -16px;
+  margin-top: -18px;
   padding-bottom: 50%;
   padding-top: 50%;
   text-align: center;
