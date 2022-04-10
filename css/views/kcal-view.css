@@ -1,7 +1,7 @@
 .kcal-view--container {
   border-radius: inherit;
   display: grid;
-  grid-template-rows: 3fr 175px;
+  grid-template-rows: 1fr 175px;
   height: 100%;
   row-gap: 10px;
   width: 100%;
@@ -107,14 +107,14 @@
   background: linear-gradient(110deg, #bc4e9c, #f80759); */
 }
 
-.app-container.light
+/* .app-container.light
   .kcal-view--container
   .add-kcals--container
-  .add-kcals-btn--text {
-  /* color: var(--primary-text-color); */
-  /* color: var(--pr); */
-  /* font-weight: 500; */
-}
+  .add-kcals-btn--text { */
+/* color: var(--primary-text-color); */
+/* color: var(--pr); */
+/* font-weight: 500; */
+/* } */
 
 #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
   background-color: var(--primary-button-color);

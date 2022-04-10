@@ -58,10 +58,17 @@ html {
 
 .app-container {
   background-color: var(--app-background-color);
-  min-height: 100vh;
-  min-width: 100%;
+  /* min-height: 100vh;
+  min-width: 100%; */
+
   padding: 5px;
   padding-top: 35px;
+}
+
+@media screen and (min-width: 450px) {
+  .app-container {
+    width: 360px;
+  }
 }
 
 .round {
