@@ -88,7 +88,7 @@
   overflow: hidden;
   padding-bottom: 100%;
   width: 100%;
-  background-color: var(--app-background-color);
+  /* background-color: var(--app-background-color); */
 }
 
 .kcal-view--container .add-kcals--container .add-kcals-btn--text {
@@ -101,6 +101,7 @@
   padding-top: 50%;
   text-align: center;
   width: 100%;
+
   /* text-shadow: black; */
   /* background: rgb(253, 65, 60);
   background: linear-gradient(110deg, #bc4e9c, #f80759); */
@@ -111,12 +112,19 @@
   .add-kcals--container
   .add-kcals-btn--text {
   /* color: var(--primary-text-color); */
-  color: var(--secondary-text-color);
-  font-weight: 400;
+  /* color: var(--pr); */
+  /* font-weight: 500; */
 }
 
 #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
+  background-color: var(--primary-button-color);
   font-size: 48px;
+  opacity: 0.9;
+}
+
+.app-container.light #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
+  background-color: var(--app-background-color);
+  color: var(--secondary-text-color);
 }
 
 /* #endregion */
