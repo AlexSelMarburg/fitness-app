@@ -46,7 +46,7 @@
   transition: 0.5s;
 }
 
-.nav_svg {
+.nav-svg {
   filter: var(--nav-icons-inactive-filter-values);
 }
 

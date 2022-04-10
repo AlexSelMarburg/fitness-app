@@ -27,6 +27,10 @@
   padding-top: 5px;
 }
 
+.app-container.light .kcal-view--container .current-kcal-value {
+  color: var(--primary-text-color);
+}
+
 .kcal-view--container .current-kcal-value span {
   color: var(--primary-text-color);
   margin-left: 3px;
@@ -34,18 +38,28 @@
   font-size: 24px;
 }
 
-.kcal-view--container .take_over_kcal--btn {
+.app-container.light .kcal-view--container .current-kcal-value span {
+  color: var(--nav-text-color);
+}
+
+.kcal-view--container .take-over-kcal--btn {
   background-color: var(--primary-button-color);
   border: none;
   border-radius: 5px;
   color: var(--primary-text-color);
   font-size: 20px;
   grid-area: 7 / 5 / 8 / col-end;
+  height: 38px;
+  align-self: flex-end;
   justify-self: right;
   letter-spacing: 1px;
   max-width: 140px;
-  padding: 10px;
+  padding: 5px 10px;
   opacity: 0.9;
+}
+
+.app-container.light .kcal-view--container .take-over-kcal--btn {
+  color: var(--secondary-text-color);
 }
 
 /* #region ADD-SUBSTRACT CALORTES*/
@@ -68,15 +82,16 @@
   width: 20.5%;
 }
 
-.kcal-view--container .button {
+.kcal-view--container .add-kcals--container .button {
   border: 2px solid var(--nav-indicator-color);
   height: 0;
   overflow: hidden;
   padding-bottom: 100%;
   width: 100%;
+  background-color: var(--app-background-color);
 }
 
-.kcal-view--container .add-kcals-btn--text {
+.kcal-view--container .add-kcals--container .add-kcals-btn--text {
   color: var(--primary-text-color);
   font-size: 26px;
   font-weight: 500;
@@ -89,6 +104,15 @@
   /* text-shadow: black; */
   /* background: rgb(253, 65, 60);
   background: linear-gradient(110deg, #bc4e9c, #f80759); */
+}
+
+.app-container.light
+  .kcal-view--container
+  .add-kcals--container
+  .add-kcals-btn--text {
+  /* color: var(--primary-text-color); */
+  color: var(--secondary-text-color);
+  font-weight: 400;
 }
 
 #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
