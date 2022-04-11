@@ -22,6 +22,7 @@
     hue-rotate(320deg) brightness(103%) contrast(102%);
 
   --primary-button-color: #d82733;
+  --secondary-button-color: #3a4750;
 
   --primary-text-color: #fefefe;
   --secondary-text-color: #fd413c;
@@ -42,6 +43,7 @@
     hue-rotate(177deg) brightness(94%) contrast(87%);
 
   --primary-button-color: #1250ca;
+  --secondary-button-color: #ff9219;
 
   --primary-text-color: #233043;
   --secondary-text-color: #fff;

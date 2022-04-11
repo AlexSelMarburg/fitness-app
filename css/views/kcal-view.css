@@ -8,23 +8,62 @@
 }
 
 .kcal-view--container .data--container {
-  height: 100%;
-  width: 100%;
-
   display: grid;
-  grid-template-rows: repeat(5, 1fr) 50px 50px;
+  grid-template-rows: 1fr 45px;
   grid-template-columns: repeat(8, 1fr);
+  height: 100%;
   padding: 5px;
-  /* background-color: aqua; */
-  /* border-radius: inherit; */
+  width: 100%;
+}
+
+/* #region PERSISTED DATA DISPLAY CONTAINER*/
+
+.kcal-view--container .persisted-kcal-data--container {
+  display: flex;
+  flex-direction: column;
+  grid-area: 1 / 1 / 2 / col-end;
+}
+
+.kcal-view--container .persisted-kcal-value {
+  border-top: 1px solid var(--app-background-color);
+  display: flex;
+  height: 15%;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.persisted-kcal-value .kcal-value {
+  align-items: center;
+  color: var(--primary-text-color);
+  display: flex;
+  font-size: 34px;
+  height: 100%;
+  width: 25%;
+}
+
+.persisted-kcal-value .kcal-description {
+  align-items: center;
+  color: var(--nav-text-color);
+  display: flex;
+  font-style: italic;
+  font-size: 26px;
+  letter-spacing: 1px;
+  padding-left: 20px;
+  width: 75%;
+}
+
+.persisted-kcal-value .kcal-description span {
+  color: var(--primary-text-color);
+  font-style: normal;
+  font-size: 28px;
+  padding-right: 5px;
 }
 
 .kcal-view--container .current-kcal-value {
   color: var(--nav-text-color);
   font-size: 38px;
-  grid-area: 7 / 1 / 8 / 5;
+  grid-area: 2 / 1 / 3 / 5;
   letter-spacing: 1px;
-  padding-top: 5px;
 }
 
 .app-container.light .kcal-view--container .current-kcal-value {
@@ -33,9 +72,9 @@
 
 .kcal-view--container .current-kcal-value span {
   color: var(--primary-text-color);
-  margin-left: 3px;
-  letter-spacing: 0px;
   font-size: 24px;
+  letter-spacing: 0px;
+  margin-left: 3px;
 }
 
 .app-container.light .kcal-view--container .current-kcal-value span {
@@ -43,24 +82,26 @@
 }
 
 .kcal-view--container .take-over-kcal--btn {
+  align-self: flex-end;
   background-color: var(--primary-button-color);
   border: none;
   border-radius: 5px;
   color: var(--primary-text-color);
   font-size: 20px;
-  grid-area: 7 / 5 / 8 / col-end;
+  grid-area: 2 / 5 / 3 / col-end;
   height: 38px;
-  align-self: flex-end;
   justify-self: right;
   letter-spacing: 1px;
   max-width: 140px;
-  padding: 5px 10px;
   opacity: 0.9;
+  padding: 5px 10px;
 }
 
 .app-container.light .kcal-view--container .take-over-kcal--btn {
   color: var(--secondary-text-color);
 }
+
+/* #endregion */
 
 /* #region ADD-SUBSTRACT CALORTES*/
 .kcal-view--container .add-kcals--container {
@@ -71,10 +112,6 @@
   justify-content: space-between;
   padding: 5px;
   width: 100%;
-
-  /* opacity: 0.7; */
-  /* border-radius: inherit; */
-  /* background-color: aqua; */
 }
 
 #toggle-kcals-plus-minus--btn,
@@ -88,7 +125,6 @@
   overflow: hidden;
   padding-bottom: calc(100% - 4px);
   width: 100%;
-  /* background-color: var(--app-background-color); */
 }
 
 .kcal-view--container .add-kcals--container .add-kcals-btn--text {
@@ -101,10 +137,6 @@
   padding-top: 50%;
   text-align: center;
   width: 100%;
-
-  /* text-shadow: black; */
-  /* background: rgb(253, 65, 60);
-  background: linear-gradient(110deg, #bc4e9c, #f80759); */
 }
 
 /* .app-container.light
@@ -117,14 +149,13 @@
 /* } */
 
 #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
-  background-color: var(--primary-button-color);
+  background-color: var(--secondary-button-color);
   font-size: 48px;
   opacity: 0.9;
 }
 
-.app-container.light #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
-  background-color: var(--app-background-color);
-  color: var(--secondary-text-color);
-}
+/* .app-container.light #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
+  
+} */
 
 /* #endregion */
