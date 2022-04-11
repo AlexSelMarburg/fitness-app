@@ -2,20 +2,22 @@
 
 .navigation {
   align-items: center;
-  background-color: var(--app-secondary-background-color);
   border-radius: 10px;
+  background-color: var(--app-secondary-background-color);
   display: flex;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
   height: 60px;
   justify-content: left;
   padding-left: 17px;
   position: relative;
-  width: 100%;
 }
 
 .navigation ul {
   display: flex;
   margin-right: 10px;
-  width: calc(100vw - 105px);
 }
 
 .navigation ul li {
