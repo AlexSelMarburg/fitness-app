@@ -134,6 +134,7 @@
   height: 100%;
   justify-content: center;
   min-width: 60px;
+  cursor: pointer;
 }
 .navigation .toggle-switch .switch {
   background-color: var(--nav-dark-light-switch-bgc-color);
