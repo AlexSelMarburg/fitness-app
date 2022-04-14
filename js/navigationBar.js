@@ -7,7 +7,11 @@ class NavigationBar {
 
   constructor() {
     this._addHandlerActiveLink();
-    this._addHandlerDarLightMode();
+    this._addHandlerDarkLightMode();
+  }
+
+  init() {
+    document.querySelector('.navigation ul li').click();
   }
 
   _addHandlerActiveLink() {
@@ -15,8 +19,6 @@ class NavigationBar {
       'click',
       function (e) {
         const btn = e.target.closest('.list');
-        // const btn = e.target.closest('img.nav_svg');
-
         if (!btn) return;
 
         this._navigationLinks.forEach(li => {
@@ -27,7 +29,7 @@ class NavigationBar {
     );
   }
 
-  _addHandlerDarLightMode() {
+  _addHandlerDarkLightMode() {
     this._toggleModeSwitch.addEventListener(
       'click',
       function (e) {
@@ -42,6 +44,39 @@ class NavigationBar {
         });
       }.bind(this)
     );
+  }
+
+  addHandlerKcalClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.render-kcal-view--btn');
+
+      if (!btn) return;
+      handler();
+    });
+  }
+
+  addHandlerWeightClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.render-weight-view--btn');
+      if (!btn) return;
+      handler();
+    });
+  }
+
+  addHandlerDnsClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.render-dns-view--btn');
+      if (!btn) return;
+      handler();
+    });
+  }
+
+  addHandlerDeleteClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.render-delete-view--btn');
+      if (!btn) return;
+      handler();
+    });
   }
 }
 
