@@ -28,7 +28,7 @@ const controlNavKcal = function () {
 
 const controlNavWeight = function () {
   try {
-    weightView.render(undefined);
+    weightView.render('dummy data');
   } catch (err) {
     // recipeView.renderError();
     console.error(err);
@@ -37,7 +37,7 @@ const controlNavWeight = function () {
 
 const controlNavDNS = function () {
   try {
-    dnsView.render(undefined);
+    dnsView.render('dummy data');
   } catch (err) {
     // recipeView.renderError();
     console.error(err);
@@ -45,8 +45,10 @@ const controlNavDNS = function () {
 };
 
 const controlNavDelete = function () {
+  console.log('test');
+
   try {
-    deleteView.render(undefined);
+    deleteView.render('dummy data');
   } catch (err) {
     // recipeView.renderError();
     console.error(err);
