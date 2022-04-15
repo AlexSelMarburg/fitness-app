@@ -9,6 +9,7 @@ import deleteView from './views/deleteView.js';
 const controlNavKcal = function () {
   try {
     caloriesView.render(model.getKcalData());
+    caloriesView.addHandlerAddKcalClick(controlAddKcals);
     // const id = window.location.hash.slice(1);
     // if (!id) return;
     // recipeView.renderSpinner();
@@ -68,6 +69,5 @@ const init = function () {
   navigation.addHandlerWeightClick(controlNavWeight);
   navigation.addHandlerDnsClick(controlNavDNS);
   navigation.addHandlerDeleteClick(controlNavDelete);
-  caloriesView.addHandlerAddKcalClick(controlAddKcals);
 };
 init();

@@ -29,7 +29,7 @@ class CaloriesView extends View {
         const addedValue = btn.dataset.kcalValue;
         handler(addedValue);
         btn.classList.add('disabled');
-        wait(0.2).then(() => btn.classList.remove('disabled'));
+        wait(0.15).then(() => btn.classList.remove('disabled'));
       });
   }
 
