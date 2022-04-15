@@ -49,7 +49,6 @@ class NavigationBar {
   addHandlerKcalClick(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.render-kcal-view--btn');
-
       if (!btn) return;
       handler();
     });

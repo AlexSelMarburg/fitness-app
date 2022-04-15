@@ -45,10 +45,17 @@ const controlNavDNS = function () {
 };
 
 const controlNavDelete = function () {
-  console.log('test');
-
   try {
     deleteView.render('dummy data');
+  } catch (err) {
+    // recipeView.renderError();
+    console.error(err);
+  }
+};
+
+const controlAddKcals = function (kcalsAccumulator) {
+  try {
+    caloriesView.update(model.getKcalData(kcalsAccumulator));
   } catch (err) {
     // recipeView.renderError();
     console.error(err);
@@ -61,5 +68,6 @@ const init = function () {
   navigation.addHandlerWeightClick(controlNavWeight);
   navigation.addHandlerDnsClick(controlNavDNS);
   navigation.addHandlerDeleteClick(controlNavDelete);
+  caloriesView.addHandlerAddKcalClick(controlAddKcals);
 };
 init();

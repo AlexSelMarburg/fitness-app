@@ -16,29 +16,19 @@ export const getNumberOfWeek = function (date = new Date()) {
   return 1 + Math.ceil((firstThursday - tdt) / 604800000);
 };
 
-export const findLastElement = function (array, findFnCallback) {
+export const findLastElementByDateString = function (array, dateString) {
   for (let i = array.length - 1; i >= 0; --i) {
-    if (findFnCallback(array[i])) {
-      return array[i];
-    }
+    if (array[i][1] === dateString) return array[i];
   }
 };
 
-export const findLastElements = function (array, weekNumber) {
+export const findLastElementsByWeekNumber = function (array, weekNumber) {
   const matchingElementsArr = [];
-
   let isFirstEntryFound = false;
-  // console.log(weekNumber);
 
   for (let i = array.length - 1; i >= 0; --i) {
-    // console.log(array[i][0]);
-
     if (weekNumber === array[i][0]) {
-      // console.log('match');
-
       matchingElementsArr.push(array[i]);
-      // console.log(matchingElementsArr);
-
       isFirstEntryFound = true;
     } else {
       if (isFirstEntryFound) return matchingElementsArr;
@@ -46,4 +36,23 @@ export const findLastElements = function (array, weekNumber) {
   }
 
   return !!isFirstEntryFound.length ? isFirstEntryFound : undefined;
+};
+
+export const getDateString = function (date) {
+  let month = date.getMonth() + 1;
+  let dt = date.getDate();
+
+  if (dt < 10) dt = '0' + dt;
+  if (month < 10) month = '0' + month;
+
+  return date.getFullYear() + '-' + month + '-' + dt;
+};
+
+export const blockingWait = function (seconds) {
+  const start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if (new Date().getTime() - start > seconds * 1000) {
+      break;
+    }
+  }
 };
