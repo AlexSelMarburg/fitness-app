@@ -121,7 +121,8 @@
 }
 
 .app-container.light .kcal-view--container .take-over-kcal--btn {
-  color: var(--secondary-text-color);
+  color: var(--light-secondary-color);
+  background-color: var(--light-ternary-color);
 }
 
 /* #endregion */
@@ -162,23 +163,25 @@
   width: 100%;
 }
 
-/* .app-container.light
-  .kcal-view--container
-  .add-kcals--container
-  .add-kcals-btn--text { */
-/* color: var(--primary-text-color); */
-/* color: var(--pr); */
-/* font-weight: 500; */
-/* } */
-
 #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
   background-color: var(--secondary-button-color);
   font-size: 48px;
   opacity: 0.9;
 }
 
-/* .app-container.light #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
-  
-} */
+.app-container.light #toggle-kcals-plus-minus--btn .add-kcals-btn--text {
+  background-color: var(--secondary-text-color);
+  color: var(--light-ternary-colorr);
+}
+
+.user-interaction-feedback,
+.take-over-kcal--btn.user-interaction-feedback {
+  background-color: var(--details-primary-color);
+  opacity: 0.65;
+}
+.app-container.light #toggle-kcals-plus-minus--btn .user-interaction-feedback {
+  background-color: var(--details-primary-color);
+  opacity: 0.75;
+}
 
 /* #endregion */

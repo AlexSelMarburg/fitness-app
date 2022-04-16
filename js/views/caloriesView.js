@@ -13,23 +13,64 @@ class CaloriesView extends View {
       .querySelector('.add-kcals--container')
       .addEventListener('click', function (e) {
         const btn = e.target.closest('.add-kcals--btn');
-        // console.log(btn.classList.contains('disabled'));
 
-        // console.log(btn);
         if (!btn || btn.classList.contains('disabled')) return;
-        // if (!btn) return;
 
-        // console.log(btn);
-        // console.log(btn.classList);
-
-        // wait(2).then(() => {
-        //   btn.classList.remove('disabled');
-        //   console.log(btn);
-        // });
-        const addedValue = btn.dataset.kcalValue;
+        const addedValue = Number(btn.dataset.kcalValue);
         handler(addedValue);
         btn.classList.add('disabled');
-        wait(0.15).then(() => btn.classList.remove('disabled'));
+        btn.querySelector('p').classList.add('user-interaction-feedback');
+
+        wait(0.15).then(() => {
+          btn.classList.remove('disabled');
+          btn.querySelector('p').classList.remove('user-interaction-feedback');
+        });
+      });
+  }
+
+  addHandlerResetKcalValueClick(handler) {
+    document
+      .querySelector('.add-kcals--container')
+      .addEventListener('click', function (e) {
+        const btn = e.target.closest('#toggle-kcals-plus-minus--btn');
+
+        if (!btn) return;
+
+        handler();
+
+        btn.querySelector('.button').classList.add('user-interaction-feedback');
+        btn
+          .querySelector('.button p')
+          .classList.add('user-interaction-feedback');
+
+        wait(0.25).then(() => {
+          btn
+            .querySelector('.button')
+            .classList.remove('user-interaction-feedback');
+          btn
+            .querySelector('.button p')
+            .classList.remove('user-interaction-feedback');
+        });
+      });
+  }
+
+  addHandlerTakeOverKcalsClick(handler) {
+    document
+      .querySelector('.take-over-kcal--btn')
+      .addEventListener('click', function (e) {
+        const btn = e.target;
+
+        if (!btn) return;
+
+        handler();
+
+        btn.classList.add('disabled');
+        btn.classList.add('user-interaction-feedback');
+
+        wait(0.15).then(() => {
+          btn.classList.remove('disabled');
+          btn.classList.remove('user-interaction-feedback');
+        });
       });
   }
 
@@ -81,7 +122,7 @@ class CaloriesView extends View {
 
       <div id="toggle-kcals-plus-minus--btn">
         <div class="button round">
-          <p class="add-kcals-btn--text">-</p>
+          <p class="add-kcals-btn--text">🗑</p>
         </div>
       </div>
 

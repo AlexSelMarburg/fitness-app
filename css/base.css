@@ -42,10 +42,10 @@
   --light-primary-color: #233043;
   --light-primary-rgb-value: 35, 48, 67;
   --light-secondary-color: #dee0e4;
-  --light-ternary-color: #ff9219;
+  --light-ternary-color: #0d2845;
   --details-primary-color: #d82733;
   --details-secondary-color: #1250ca;
-  --details-light-primary-color: #fff;
+  --details-light-primary-color: #ebe9e8;
 
   --app-background-color: var(--light-primary-color);
   --app-secondary-background-color: var(--light-secondary-color);

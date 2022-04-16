@@ -35,7 +35,7 @@ export const findLastElementsByWeekNumber = function (array, weekNumber) {
     }
   }
 
-  return !!isFirstEntryFound.length ? isFirstEntryFound : undefined;
+  return !!matchingElementsArr.length ? matchingElementsArr : undefined;
 };
 
 export const getDateString = function (date) {

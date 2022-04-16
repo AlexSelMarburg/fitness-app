@@ -8,21 +8,13 @@ import deleteView from './views/deleteView.js';
 
 const controlNavKcal = function () {
   try {
+    model.resetKcalAccumulator();
     caloriesView.render(model.getKcalData());
     caloriesView.addHandlerAddKcalClick(controlAddKcals);
-    // const id = window.location.hash.slice(1);
-    // if (!id) return;
-    // recipeView.renderSpinner();
-    // // 0) Update results view to mark selected search result
-    // resultsView.update(model.getSearchResultsPage());
-    // // 1) Updating bookmarks view
-    // bookmarksView.update(model.state.bookmarks);
-    // // 2) Loading recipe
-    // await model.loadRecipe(id);
-    // // 3) Rendering recipe
-    // recipeView.render(model.state.recipe);
+    caloriesView.addHandlerResetKcalValueClick(controlResetKcalsValue);
+    caloriesView.addHandlerTakeOverKcalsClick(controlTakeOverKcals);
   } catch (err) {
-    // recipeView.renderError();
+    // caloriesView.renderError();
     console.error(err);
   }
 };
@@ -31,7 +23,7 @@ const controlNavWeight = function () {
   try {
     weightView.render('dummy data');
   } catch (err) {
-    // recipeView.renderError();
+    // caloriesView.renderError();
     console.error(err);
   }
 };
@@ -40,7 +32,7 @@ const controlNavDNS = function () {
   try {
     dnsView.render('dummy data');
   } catch (err) {
-    // recipeView.renderError();
+    // caloriesView.renderError();
     console.error(err);
   }
 };
@@ -49,7 +41,7 @@ const controlNavDelete = function () {
   try {
     deleteView.render('dummy data');
   } catch (err) {
-    // recipeView.renderError();
+    // caloriesView.renderError();
     console.error(err);
   }
 };
@@ -58,7 +50,28 @@ const controlAddKcals = function (kcalsAccumulator) {
   try {
     caloriesView.update(model.getKcalData(kcalsAccumulator));
   } catch (err) {
-    // recipeView.renderError();
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+
+const controlResetKcalsValue = function () {
+  try {
+    model.resetKcalAccumulator();
+    caloriesView.update(model.getKcalData());
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+
+const controlTakeOverKcals = function () {
+  try {
+    // model.resetKcalAccumulator();
+    model.processKcalAccumulator();
+    caloriesView.update(model.getKcalData());
+  } catch (err) {
+    // caloriesView.renderError();
     console.error(err);
   }
 };
