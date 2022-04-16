@@ -2,9 +2,9 @@ import { wait, getNumberOfWeek } from './helpers.js';
 import * as model from './model.js';
 import navigation from './navigationBar.js';
 import caloriesView from './views/caloriesView.js';
+import manageDataView from './views/manageDataView.js';
 import weightView from './views/weightView.js';
 import dnsView from './views/dnsView.js';
-import deleteView from './views/deleteView.js';
 
 const controlNavKcal = function () {
   try {
@@ -39,7 +39,17 @@ const controlNavDNS = function () {
 
 const controlNavDelete = function () {
   try {
-    deleteView.render('dummy data');
+    manageDataView.render('dummy data');
+    manageDataView.addHandlerDeleteAllData(controlDeleteAllData);
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+
+const controlDeleteAllData = function () {
+  try {
+    model.clearAllData();
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);

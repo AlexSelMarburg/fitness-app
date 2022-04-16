@@ -8,8 +8,8 @@ import {
 
 export const state = {
   weight: [
-    [15, 'YYYY-MM-DD', 101.8],
-    [16, 'YYYY-MM-DD', 101.3],
+    // [15, 'YYYY-MM-DD', 101.8],
+    // [16, 'YYYY-MM-DD', 101.3],
   ],
   kcalsAccumulator: 0,
   kcals: [
@@ -40,6 +40,14 @@ const persistWeight = function () {
 };
 const persistKcals = function () {
   localStorage.setItem('kcals', JSON.stringify(state.kcals));
+};
+
+export const clearAllData = function () {
+  localStorage.clear('kcals');
+  localStorage.clear('weight');
+  state.kcals = state.weight = [];
+  // init();
+  console.log(state);
 };
 
 export const resetKcalAccumulator = function () {
@@ -84,7 +92,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
   );
 
   const avgCurrentWeekKcals = allCurrentWeekDaysArr?.reduce(
-    (avgKcals, kcalsArray) => (avgKcals += kcalsArray[2]),
+    (avgKcals, kcalsArray, _, arr) => avgKcals + kcalsArray[2] / arr.length,
     0
   );
 
@@ -99,7 +107,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
     lastWekkNumber
   );
   const avgLastWeekKcals = allLastWeekDaysArr?.reduce(
-    (avgKcals, kcalsArray) => (avgKcals += kcalsArray[2]),
+    (avgKcals, kcalsArray, _, arr) => avgKcals + kcalsArray[2] / arr.length,
     0
   );
   data.lastWeek = avgLastWeekKcals ? avgLastWeekKcals : undefined;
@@ -123,7 +131,6 @@ export const processKcalAccumulator = function () {
       state.kcalsAccumulator,
     ]);
   }
-  console.log(state.kcals.at(-1));
   persistKcals();
   resetKcalAccumulator();
 };
