@@ -32,7 +32,7 @@ class CaloriesView extends View {
     document
       .querySelector('.add-kcals--container')
       .addEventListener('click', function (e) {
-        const btn = e.target.closest('#toggle-kcals-plus-minus--btn');
+        const btn = e.target.closest('#delete-kcals-acc--btn');
 
         if (!btn) return;
 
@@ -120,7 +120,7 @@ class CaloriesView extends View {
 
     <div class="add-kcals--container">
 
-      <div id="toggle-kcals-plus-minus--btn">
+      <div id="delete-kcals-acc--btn">
         <div class="button round">
           <p class="add-kcals-btn--text">🗑</p>
         </div>
