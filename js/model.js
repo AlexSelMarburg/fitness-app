@@ -8,20 +8,14 @@ import {
 
 export const state = {
   weight: [
-    // [15, 'YYYY-MM-DD', 101.8],
-    // [16, 'YYYY-MM-DD', 101.3],
+    // ['YYYY-MM-DD', 101.8],
+    // ['YYYY-MM-DD', 101.3],
   ],
   kcalsAccumulator: 0,
   kcals: [
-    // [11, '2022-03-09', 55],
-    // [11, '2022-03-09', 22],
-    // [11, '2022-03-09', 33],
-    // [11, '2022-03-09', 1],
-    // [14, '2022-03-10', 2],
-    // [14, '2022-03-11', 3],
-    // [15, '2022-04-11', 4],
-    // [15, '2022-04-15', 10],
-    // [15, '2022-04-16', 110],
+    // ['2022-04-16', 110],
+    // ['2022-04-16', 110],
+    // ['2022-04-16', 110],
   ],
   DNS: {},
 };
@@ -47,7 +41,7 @@ export const clearAllData = function () {
   localStorage.clear('weight');
   state.kcals = state.weight = [];
   // init();
-  console.log(state);
+  // console.log(state);
 };
 
 export const resetKcalAccumulator = function () {
@@ -68,7 +62,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
     currentDateString
   );
   // assign kcal value
-  data.today = todayKcalEntryArr?.length ? todayKcalEntryArr[2] : undefined;
+  data.today = todayKcalEntryArr?.length ? todayKcalEntryArr[1] : undefined;
 
   // -------------------------------------------------
 
@@ -82,7 +76,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
   );
 
   data.yesterday = yesterdayKcalEntryArr?.length
-    ? yesterdayKcalEntryArr[2]
+    ? yesterdayKcalEntryArr[1]
     : undefined;
 
   // -------------------------------------------------
@@ -92,7 +86,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
   );
 
   const avgCurrentWeekKcals = allCurrentWeekDaysArr?.reduce(
-    (avgKcals, kcalsArray, _, arr) => avgKcals + kcalsArray[2] / arr.length,
+    (avgKcals, kcalsArray, _, arr) => avgKcals + kcalsArray[1] / arr.length,
     0
   );
 
@@ -107,7 +101,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
     lastWekkNumber
   );
   const avgLastWeekKcals = allLastWeekDaysArr?.reduce(
-    (avgKcals, kcalsArray, _, arr) => avgKcals + kcalsArray[2] / arr.length,
+    (avgKcals, kcalsArray, _, arr) => avgKcals + kcalsArray[1] / arr.length,
     0
   );
   data.lastWeek = avgLastWeekKcals ? avgLastWeekKcals : undefined;
@@ -119,17 +113,13 @@ export const processKcalAccumulator = function () {
   const currentDateString = getDateString(new Date());
   const lastKcalsArr = state.kcals?.at(-1);
   const currentKcalsArr =
-    lastKcalsArr?.at(1) === currentDateString ? lastKcalsArr : new Array();
+    lastKcalsArr?.at(0) === currentDateString ? lastKcalsArr : new Array();
 
   // console.log(isCurrentDateKcalCaptured);
   if (!!currentKcalsArr.length) {
-    currentKcalsArr[2] += state.kcalsAccumulator;
+    currentKcalsArr[1] += state.kcalsAccumulator;
   } else {
-    state.kcals.push([
-      getNumberOfWeek(),
-      currentDateString,
-      state.kcalsAccumulator,
-    ]);
+    state.kcals.push([currentDateString, state.kcalsAccumulator]);
   }
   persistKcals();
   resetKcalAccumulator();

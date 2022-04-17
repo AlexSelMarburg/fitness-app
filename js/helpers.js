@@ -18,7 +18,7 @@ export const getNumberOfWeek = function (date = new Date()) {
 
 export const findLastElementByDateString = function (array, dateString) {
   for (let i = array.length - 1; i >= 0; --i) {
-    if (array[i][1] === dateString) return array[i];
+    if (array[i][0] === dateString) return array[i];
   }
 };
 
@@ -27,7 +27,7 @@ export const findLastElementsByWeekNumber = function (array, weekNumber) {
   let isFirstEntryFound = false;
 
   for (let i = array.length - 1; i >= 0; --i) {
-    if (weekNumber === array[i][0]) {
+    if (weekNumber === getNumberOfWeek(new Date(array[i][0]))) {
       matchingElementsArr.push(array[i]);
       isFirstEntryFound = true;
     } else {
