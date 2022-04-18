@@ -107,7 +107,6 @@
 .kcal-view--container .take-over-kcal--btn {
   align-self: flex-end;
   grid-area: 2 / 5 / 3 / col-end;
-  height: 38px;
   justify-self: right;
   letter-spacing: 1px;
   max-width: 140px;
