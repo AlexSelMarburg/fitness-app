@@ -7,12 +7,11 @@ import {
 } from './helpers.js';
 
 export const state = {
-  weight: [
-    // ['YYYY-MM-DD', 101.8],
-    // ['YYYY-MM-DD', 101.3],
-  ],
+  setting: {
+    lightMode: false,
+  },
   kcalsAccumulator: 0,
-  kcals: [
+  data: [
     // ['2022-04-16', 110],
     // ['2022-04-16', 110],
     // ['2022-04-16', 110],
@@ -21,25 +20,18 @@ export const state = {
 };
 
 const init = function () {
-  let kcals = localStorage.getItem('kcals');
-  let weight = localStorage.getItem('weight');
-
-  if (weight) state.weight = JSON.parse(weight);
-  if (kcals) state.kcals = JSON.parse(kcals);
+  let data = localStorage.getItem('data');
+  if (data) state.data = JSON.parse(data);
 };
 init();
 
-const persistWeight = function () {
-  localStorage.setItem('weight', JSON.stringify(state.weight));
-};
-const persistKcals = function () {
-  localStorage.setItem('kcals', JSON.stringify(state.kcals));
+const persistData = function () {
+  localStorage.setItem('data', JSON.stringify(state.data));
 };
 
 export const clearAllData = function () {
-  localStorage.clear('kcals');
-  localStorage.clear('weight');
-  state.kcals = state.weight = [];
+  localStorage.clear('data');
+  state.data = [];
   // init();
   // console.log(state);
 };
@@ -58,7 +50,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
 
   // try to find matching entery in kcals-arr
   const todayKcalEntryArr = findLastElementByDateString(
-    state.kcals,
+    state.data,
     currentDateString
   );
   // assign kcal value
@@ -71,7 +63,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
   );
 
   const yesterdayKcalEntryArr = findLastElementByDateString(
-    state.kcals,
+    state.data,
     yesterdayDateString
   );
 
@@ -81,7 +73,7 @@ export const getKcalData = function (kcalsAccumulator = 0) {
 
   // -------------------------------------------------
   const allCurrentWeekDaysArr = findLastElementsByWeekNumber(
-    state.kcals,
+    state.data,
     getNumberOfWeek()
   );
 
@@ -90,28 +82,30 @@ export const getKcalData = function (kcalsAccumulator = 0) {
     0
   );
 
-  data.currentWeek = avgCurrentWeekKcals ? avgCurrentWeekKcals : undefined;
+  data.currentWeek = avgCurrentWeekKcals
+    ? Math.trunc(avgCurrentWeekKcals)
+    : undefined;
 
   // -------------------------------------------------
   const lastWekkNumber =
     getNumberOfWeek() - 1 >= 1 ? getNumberOfWeek() - 1 : 52;
 
   const allLastWeekDaysArr = findLastElementsByWeekNumber(
-    state.kcals,
+    state.data,
     lastWekkNumber
   );
   const avgLastWeekKcals = allLastWeekDaysArr?.reduce(
     (avgKcals, kcalsArray, _, arr) => avgKcals + kcalsArray[1] / arr.length,
     0
   );
-  data.lastWeek = avgLastWeekKcals ? avgLastWeekKcals : undefined;
+  data.lastWeek = avgLastWeekKcals ? Math.trunc(avgLastWeekKcals) : undefined;
 
   return data;
 };
 
 export const processKcalAccumulator = function () {
   const currentDateString = getDateString(new Date());
-  const lastKcalsArr = state.kcals?.at(-1);
+  const lastKcalsArr = state.data?.at(-1);
   const currentKcalsArr =
     lastKcalsArr?.at(0) === currentDateString ? lastKcalsArr : new Array();
 
@@ -119,8 +113,8 @@ export const processKcalAccumulator = function () {
   if (!!currentKcalsArr.length) {
     currentKcalsArr[1] += state.kcalsAccumulator;
   } else {
-    state.kcals.push([currentDateString, state.kcalsAccumulator]);
+    state.data.push([currentDateString, state.kcalsAccumulator]);
   }
-  persistKcals();
+  persistData();
   resetKcalAccumulator();
 };

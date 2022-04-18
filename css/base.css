@@ -115,12 +115,13 @@ html {
 
 .button {
   background-color: var(--primary-button-color);
-  border-radius: 5px;
+  border-radius: 3px;
   color: var(--primary-text-color);
   font-size: 20px;
   opacity: 0.9;
   padding: 5px 10px;
   height: 38px;
+  letter-spacing: 1px;
 }
 
 .button-round {

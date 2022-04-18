@@ -77,7 +77,6 @@ const controlResetKcalsValue = function () {
 
 const controlTakeOverKcals = function () {
   try {
-    // model.resetKcalAccumulator();
     model.processKcalAccumulator();
     caloriesView.update(model.getKcalData());
   } catch (err) {

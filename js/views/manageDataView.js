@@ -8,9 +8,7 @@ class DeleteView extends View {
   addHandlerDeleteAllData(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.delete-all-data--btn');
-
       if (!btn) return;
-
       handler();
     });
   }
