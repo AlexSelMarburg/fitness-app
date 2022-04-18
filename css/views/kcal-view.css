@@ -106,24 +106,17 @@
 
 .kcal-view--container .take-over-kcal--btn {
   align-self: flex-end;
-  background-color: var(--primary-button-color);
-  border: none;
-  border-radius: 5px;
-  color: var(--primary-text-color);
-  font-size: 20px;
   grid-area: 2 / 5 / 3 / col-end;
   height: 38px;
   justify-self: right;
   letter-spacing: 1px;
   max-width: 140px;
-  opacity: 0.9;
-  padding: 5px 10px;
 }
 
-.app-container.light .kcal-view--container .take-over-kcal--btn {
+/* .app-container.light .kcal-view--container .take-over-kcal--btn {
   color: var(--light-secondary-color);
   background-color: var(--light-ternary-color);
-}
+} */
 
 /* #endregion */
 
@@ -143,7 +136,7 @@
   width: 20.5%;
 }
 
-.kcal-view--container .add-kcals--container .button {
+.kcal-view--container .add-kcals--container .button-round {
   border: 2px solid var(--nav-indicator-color);
   height: 0;
   overflow: hidden;

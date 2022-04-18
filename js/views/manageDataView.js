@@ -17,7 +17,7 @@ class DeleteView extends View {
 
   _generateMarkup() {
     return `
-    <button class="delete-all-data--btn">alles löschen</button>
+    <button class="delete-all-data--btn button">alles löschen</button>
     `;
   }
 }

@@ -38,17 +38,19 @@ class CaloriesView extends View {
 
         handler();
 
-        btn.querySelector('.button').classList.add('user-interaction-feedback');
         btn
-          .querySelector('.button p')
+          .querySelector('.button-round')
+          .classList.add('user-interaction-feedback');
+        btn
+          .querySelector('.button-round p')
           .classList.add('user-interaction-feedback');
 
         wait(0.25).then(() => {
           btn
-            .querySelector('.button')
+            .querySelector('.button-round')
             .classList.remove('user-interaction-feedback');
           btn
-            .querySelector('.button p')
+            .querySelector('.button-round p')
             .classList.remove('user-interaction-feedback');
         });
       });
@@ -115,55 +117,55 @@ class CaloriesView extends View {
       <div class="current-kcal-value">
         <p>${this._data.kcalsAccumulator || 0}</p><span>kcal</span>
       </div>
-      <button class="take-over-kcal--btn">Speichern</button>
+      <button class="take-over-kcal--btn button">Speichern</button>
     </div>
 
     <div class="add-kcals--container">
 
       <div id="delete-kcals-acc--btn">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">🗑</p>
         </div>
       </div>
 
       <div class="add-kcals--btn" data-kcal-value="5">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">5</p>
         </div>
       </div>
 
       <div class="add-kcals--btn" data-kcal-value="10">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">10</p>
         </div>
       </div>
 
       <div class="add-kcals--btn" data-kcal-value="20">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">20</p>
         </div>
       </div>
 
       <div class="add-kcals--btn" data-kcal-value="50">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">50</p>
         </div>
       </div>
 
       <div class="add-kcals--btn" data-kcal-value="100">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">100</p>
         </div>
       </div>
 
       <div class="add-kcals--btn" data-kcal-value="200">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">200</p>
         </div>
       </div>
 
       <div class="add-kcals--btn" data-kcal-value="500">
-        <div class="button round">
+        <div class="button-round">
           <p class="add-kcals-btn--text">500</p>
         </div>
       </div>

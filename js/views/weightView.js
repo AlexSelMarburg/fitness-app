@@ -7,7 +7,16 @@ class WeightView extends View {
 
   _generateMarkup() {
     return `
-      <p>Baustelle 1</p>
+      
+    <div class="weight-view--container">
+    <div class="data--container">A</div>
+    <div class="add-weight--container">
+      <button class="scroll-jump-app--button button">⏫</button>
+      <button class="scroll--app--button button">🔼</button>
+      <button class="scroll--down--button button">🔽</button>
+      <button class="add-weight-data--button button">neuer Eintrag</button>
+    </div>
+  </div>
     `;
   }
 }

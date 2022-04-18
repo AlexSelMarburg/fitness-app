@@ -108,3 +108,20 @@ html {
 .round {
   border-radius: 50%;
 }
+.button,
+.button-round {
+  border: none;
+}
+
+.button {
+  background-color: var(--primary-button-color);
+  border-radius: 5px;
+  color: var(--primary-text-color);
+  font-size: 20px;
+  opacity: 0.9;
+  padding: 5px 10px;
+}
+
+.button-round {
+  border-radius: 50%;
+}
