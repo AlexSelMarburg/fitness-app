@@ -39,10 +39,6 @@
 }
 
 /* allgemeine Klassen */
-/* .button {
-  border: none;
-  border-radius: 5px;
-} */
 
 .weight-view--container .persisted-weight-data-heading,
 .weight-view--container .persisted-weight-data {
@@ -53,30 +49,30 @@
 }
 
 .weight-view--container .persisted-weight-data-heading {
-  color: var(--nav-text-color);
+  color: var(--details-primary-color);
   font-size: 18px;
+  margin-bottom: 8px;
 }
 
 .weight-view--container .persisted-weight-data {
   height: 40px;
-  margin-top: 10px;
+  margin-bottom: 15px;
 }
 .weight-view--container .persisted-weight-data div {
   align-items: center;
   border-bottom: solid 1px var(--details-secondary-color);
-  color: var(--details-light-primary-color);
+  color: var(--primary-text-color);
   display: flex;
   font-size: 21px;
   justify-content: center;
+  letter-spacing: 1px;
 }
 
 .weight-view--container .persisted-weight-data div:nth-child(odd) {
-  background-color: var(--dark-primary-color);
+  background-color: var(--details-tertiary-color);
 }
-.weight-view--container .persisted-weight-data div:nth-child(even) {
-  background-color: var(--dark-ternary-color);
-}
+
 .weight-view--container .persisted-weight-data .date-value {
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 17px;
+  letter-spacing: 0px;
 }

@@ -65,10 +65,10 @@ class WeightView extends View {
     </div>
 
     <div class="add-weight--container">
-    <button class="scroll-jump-up--button button"></button>
-      <button class="scroll-jump-down--button button"></button>
-      <button class="scroll-up--button button"></button>
-      <button class="scroll-down--button button"></button>
+    <button class="scroll-jump-up--button button button-secondary"></button>
+      <button class="scroll-jump-down--button button button-secondary"></button>
+      <button class="scroll-up--button button button-secondary"></button>
+      <button class="scroll-down--button button button-secondary"></button>
       <button class="add-weight-data--button button">Neuer Eintrag</button>
     </div>
   </div>

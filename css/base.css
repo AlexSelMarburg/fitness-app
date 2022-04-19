@@ -6,69 +6,45 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
   font-family: 'Poppins', sans-serif;
 }
 
 :root {
-  --dark-primary-color: #1c262a;
-  --dark-primary-rgb-value: 28, 38, 42;
-  --dark-secondary-color: #2f3539;
-  --dark-ternary-color: #3a4750;
+  --primary-background-color: #1c262a;
+  --secondary-background-color: #2f3539;
+
   --details-primary-color: #ffe93b;
   --details-secondary-color: #d82733;
-  --details-light-primary-color: #fefefe;
+  --details-tertiary-color: #3a4750;
 
-  --app-background-color: var(--dark-primary-color);
-  --app-secondary-background-color: var(--dark-secondary-color);
-
-  --nav-indicator-color: var(--details-primary-color);
-  --nav-dark-light-switch-bgc-color: var(--details-primary-color);
-  --nav-dark-light-switch-color: var(--dark-primary-color);
-  --nav-text-color: var(--details-primary-color);
+  --primary-text-color: #fefefe;
+  --secondary-text-color: #ffe93b;
 
   --nav-icons-active-filter-values: invert(100%) sepia(100%) saturate(0%)
     hue-rotate(320deg) brightness(103%) contrast(102%);
   --nav-icons-inactive-filter-values: invert(100%) sepia(100%) saturate(0%)
     hue-rotate(320deg) brightness(103%) contrast(102%);
-
-  --primary-button-color: var(--details-secondary-color);
-  --secondary-button-color: var(--dark-ternary-color);
-
-  --primary-text-color: var(--details-light-primary-color);
-  --secondary-text-color: #fd413c;
 }
 
 .app-container.light {
-  --light-primary-color: #233043;
-  --light-primary-rgb-value: 35, 48, 67;
-  --light-secondary-color: #dee0e4;
-  --light-ternary-color: #0d2845;
+  --primary-background-color: #233043;
+  --secondary-background-color: #dee0e4;
+
   --details-primary-color: #d82733;
-  --details-secondary-color: #1250ca;
-  --details-light-primary-color: #ebe9e8;
+  --details-secondary-color: #79a0ed;
+  --details-tertiary-color: rgb(181, 235, 208);
 
-  --app-background-color: var(--light-primary-color);
-  --app-secondary-background-color: var(--light-secondary-color);
-
-  --nav-indicator-color: var(--details-primary-color);
-  --nav-dark-light-switch-bgc-color: var(--details-primary-color);
-  --nav-dark-light-switch-color: var(--light-primary-color);
-  --nav-text-color: var(--details-primary-color);
+  --primary-text-color: #233043;
+  --secondary-text-color: #d82733;
 
   --nav-icons-active-filter-values: invert(100%) sepia(33%) saturate(2%)
     hue-rotate(327deg) brightness(112%) contrast(101%);
   --nav-icons-inactive-filter-values: invert(14%) sepia(10%) saturate(2647%)
     hue-rotate(177deg) brightness(94%) contrast(87%);
-
-  --primary-button-color: var(--details-secondary-color);
-  --secondary-button-color: var(--light-ternary-color);
-
-  --primary-text-color: var(--light-primary-color);
-  --secondary-text-color: var(--details-light-primary-color);
 }
 
 html {
-  /* -webkit-tap-highlight-color: red; */
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -77,7 +53,7 @@ html {
 }
 
 .app-container {
-  background-color: var(--app-background-color);
+  background-color: var(--primary-background-color);
   display: grid;
   grid-template-rows: 60px 1fr;
   height: 100vh;
@@ -114,7 +90,7 @@ html {
 }
 
 .button {
-  background-color: var(--primary-button-color);
+  background-color: var(--details-secondary-color);
   border-radius: 3px;
   color: var(--primary-text-color);
   font-size: 20px;
@@ -122,6 +98,10 @@ html {
   padding: 5px 10px;
   height: 38px;
   letter-spacing: 1px;
+}
+
+.button-secondary {
+  background-color: var(--details-tertiary-color);
 }
 
 .button-round {

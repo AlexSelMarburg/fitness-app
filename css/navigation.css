@@ -3,7 +3,7 @@
 .navigation {
   align-items: center;
   border-radius: 10px;
-  background-color: var(--app-secondary-background-color);
+  background-color: var(--secondary-background-color);
   display: flex;
   grid-row-start: 1;
   grid-row-end: 2;
@@ -62,7 +62,7 @@
 }
 
 .navigation ul li a .text {
-  color: var(--nav-text-color);
+  color: var(--details-primary-color);
   font-weight: 500;
   font-size: 1em;
   letter-spacing: 0.05em;
@@ -78,9 +78,9 @@
 }
 
 .indicator {
-  background-color: var(--nav-indicator-color);
+  background-color: var(--details-primary-color);
   border-radius: 50%;
-  border: 6px solid var(--app-background-color);
+  border: 6px solid var(--primary-background-color);
   height: 60px;
   position: absolute;
   top: -50%;
@@ -90,7 +90,7 @@
 
 .indicator::before {
   background-color: transparent;
-  box-shadow: 0px -10px 0 0 var(--app-background-color);
+  box-shadow: 0px -10px 0 0 var(--primary-background-color);
   border-top-right-radius: 20px;
   content: '';
   height: 18px;
@@ -102,7 +102,7 @@
 
 .indicator::after {
   background-color: transparent;
-  box-shadow: 0px -10px 0 0 var(--app-background-color);
+  box-shadow: 0px -10px 0 0 var(--primary-background-color);
   border-top-left-radius: 20px;
   content: '';
   height: 20px;
@@ -136,8 +136,9 @@
   min-width: 60px;
   cursor: pointer;
 }
+
 .navigation .toggle-switch .switch {
-  background-color: var(--nav-dark-light-switch-bgc-color);
+  background-color: var(--details-primary-color);
   border-radius: 25px;
   height: 30px;
   position: relative;
@@ -153,11 +154,11 @@
   border-radius: 50%;
   top: 5px;
   left: 5px;
-  background-color: var(--nav-dark-light-switch-color);
+  background-color: var(--primary-background-color);
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   content: '';
 }
 
