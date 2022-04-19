@@ -17,6 +17,7 @@
   --details-primary-color: #ffe93b;
   --details-secondary-color: #d82733;
   --details-tertiary-color: #3a4750;
+  --details-fourth-color: #1c262a;
 
   --primary-text-color: #fefefe;
   --secondary-text-color: #ffe93b;
@@ -32,11 +33,12 @@
   --secondary-background-color: #dee0e4;
 
   --details-primary-color: #d82733;
-  --details-secondary-color: #79a0ed;
-  --details-tertiary-color: rgb(181, 235, 208);
+  --details-secondary-color: #cae00c;
+  --details-tertiary-color: #a9dcec;
+  --details-fourth-color: #e1dfdf;
 
-  --primary-text-color: #233043;
-  --secondary-text-color: #d82733;
+  --primary-text-color: #14213d;
+  --secondary-text-color: #18465a;
 
   --nav-icons-active-filter-values: invert(100%) sepia(33%) saturate(2%)
     hue-rotate(327deg) brightness(112%) contrast(101%);

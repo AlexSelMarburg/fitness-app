@@ -71,6 +71,9 @@
 .weight-view--container .persisted-weight-data div:nth-child(odd) {
   background-color: var(--details-tertiary-color);
 }
+.weight-view--container .persisted-weight-data div:nth-child(even) {
+  background-color: var(--details-fourth-color);
+}
 
 .weight-view--container .persisted-weight-data .date-value {
   font-size: 17px;
