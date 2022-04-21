@@ -25,9 +25,9 @@
 
 .kcal-view--container .persisted-kcal-value {
   border: 1px solid var(--primary-background-color);
-  border-radius: 7px 12px 5px 3px;
+  border-radius: 7px 10px 5px 3px;
   display: flex;
-  max-height: 52px;
+  max-height: 50px;
   margin-bottom: 12px;
   flex: 1;
 }

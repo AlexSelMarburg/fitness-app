@@ -30,15 +30,15 @@
 
 .app-container.light {
   --primary-background-color: #233043;
-  --secondary-background-color: #dee0e4;
+  --secondary-background-color: #fff;
 
   --details-primary-color: #d82733;
-  --details-secondary-color: #cae00c;
+  --details-secondary-color: #d82733;
   --details-tertiary-color: #a9dcec;
   --details-fourth-color: #e1dfdf;
 
-  --primary-text-color: #14213d;
-  --secondary-text-color: #18465a;
+  --primary-text-color: #111c36;
+  --secondary-text-color: #d82733;
 
   --nav-icons-active-filter-values: invert(100%) sepia(33%) saturate(2%)
     hue-rotate(327deg) brightness(112%) contrast(101%);
@@ -100,6 +100,10 @@ html {
   padding: 5px 10px;
   height: 38px;
   letter-spacing: 1px;
+}
+
+.app-container.light .button {
+  color: #fff;
 }
 
 .button-secondary {
