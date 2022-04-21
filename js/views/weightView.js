@@ -49,18 +49,7 @@ class WeightView extends View {
         <div class="avg-kcal-value">1875</div>
         <div class="date-value">18.04.2022</div>
       </div>
-      <div class="persisted-weight-data">
-        <div class="kg-value">109,8</div>
-        <div class="kg-difference-value">-0,5</div>
-        <div class="avg-kcal-value">1875</div>
-        <div class="date-value">18.04.2022</div>
-      </div>
-      <div class="persisted-weight-data">
-        <div class="kg-value">109,8</div>
-        <div class="kg-difference-value">-0,5</div>
-        <div class="avg-kcal-value">1875</div>
-        <div class="date-value">18.04.2022</div>
-      </div>
+     
 
     </div>
 

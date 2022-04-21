@@ -21,6 +21,7 @@
 
   --primary-text-color: #fefefe;
   --secondary-text-color: #ffe93b;
+  --user-interaction-color: #ffe93b;
 
   --nav-icons-active-filter-values: invert(100%) sepia(100%) saturate(0%)
     hue-rotate(320deg) brightness(103%) contrast(102%);
@@ -39,6 +40,7 @@
 
   --primary-text-color: #111c36;
   --secondary-text-color: #d82733;
+  --user-interaction-color: #233043;
 
   --nav-icons-active-filter-values: invert(100%) sepia(33%) saturate(2%)
     hue-rotate(327deg) brightness(112%) contrast(101%);
@@ -112,4 +114,14 @@ html {
 
 .button-round {
   border-radius: 50%;
+}
+
+.user-interaction-feedback,
+#delete-kcals-acc--btn .user-interaction-feedback p {
+  opacity: 0.8;
+  background-color: var(--user-interaction-color);
+}
+
+.disabled {
+  opacity: 0.45;
 }

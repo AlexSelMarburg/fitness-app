@@ -1,30 +1,23 @@
 import View from './View.js';
-import { wait, blockingWait } from '../helpers.js';
+import * as help from '../helpers.js';
 
 class CaloriesView extends View {
   constructor() {
     super();
   }
 
-  //TODO: btn-rerender makes  disabled-class go away
-  //update method needed
   addHandlerAddKcalClick(handler) {
     document
       .querySelector('.add-kcals--container')
       .addEventListener('click', function (e) {
         const btn = e.target.closest('.add-kcals--btn');
 
-        if (!btn || btn.classList.contains('disabled')) return;
+        if (!btn || help.isButtonDisabled(btn)) return;
 
         const addedValue = Number(btn.dataset.kcalValue);
-        handler(addedValue);
-        btn.classList.add('disabled');
-        btn.querySelector('p').classList.add('user-interaction-feedback');
 
-        wait(0.15).then(() => {
-          btn.classList.remove('disabled');
-          btn.querySelector('p').classList.remove('user-interaction-feedback');
-        });
+        handler(addedValue);
+        help.performUserInteractionFeedback(btn.querySelector('p'));
       });
   }
 
@@ -32,48 +25,45 @@ class CaloriesView extends View {
     document
       .querySelector('.add-kcals--container')
       .addEventListener('click', function (e) {
-        const btn = e.target.closest('#delete-kcals-acc--btn');
+        const btn = e.target.closest('#delete-kcals-acc--btn .button-round');
 
-        if (!btn) return;
+        if (!btn || help.isButtonDisabled(btn)) return;
 
         handler();
-
-        btn
-          .querySelector('.button-round')
-          .classList.add('user-interaction-feedback');
-        btn
-          .querySelector('.button-round p')
-          .classList.add('user-interaction-feedback');
-
-        wait(0.25).then(() => {
-          btn
-            .querySelector('.button-round')
-            .classList.remove('user-interaction-feedback');
-          btn
-            .querySelector('.button-round p')
-            .classList.remove('user-interaction-feedback');
-        });
+        help.performUserInteractionFeedback(btn);
+        help.performUserInteractionFeedback(btn.querySelector('p'));
       });
   }
 
   addHandlerTakeOverKcalsClick(handler) {
     document
-      .querySelector('.take-over-kcal--btn')
+      .querySelector('#take-over-kcal--btn')
       .addEventListener('click', function (e) {
         const btn = e.target;
 
-        if (!btn) return;
+        if (!btn || help.isButtonDisabled(btn)) return;
 
         handler();
-
-        btn.classList.add('disabled');
-        btn.classList.add('user-interaction-feedback');
-
-        wait(0.15).then(() => {
-          btn.classList.remove('disabled');
-          btn.classList.remove('user-interaction-feedback');
-        });
+        help.performUserInteractionFeedback(btn);
       });
+  }
+
+  handleButtonsDisability(kcalsAccumulatorValue) {
+    console.log('aaaa');
+
+    const btnDeleteKcals = document.querySelector(
+      '#delete-kcals-acc--btn .button-round'
+    );
+    const btnPersistKcals = document.querySelector('#take-over-kcal--btn');
+
+    if (!!kcalsAccumulatorValue) {
+      btnDeleteKcals.classList.remove('disabled');
+      btnPersistKcals.classList.remove('disabled');
+      return;
+    }
+
+    btnDeleteKcals.classList.add('disabled');
+    btnPersistKcals.classList.add('disabled');
   }
 
   _generateMarkup() {
@@ -117,7 +107,7 @@ class CaloriesView extends View {
       <div class="current-kcal-value">
         <p>${this._data.kcalsAccumulator || 0}</p><span>kcal</span>
       </div>
-      <button class="take-over-kcal--btn button">Speichern</button>
+      <button id="take-over-kcal--btn" class="button">Speichern</button>
     </div>
 
     <div class="add-kcals--container">

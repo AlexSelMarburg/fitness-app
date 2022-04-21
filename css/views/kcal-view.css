@@ -86,7 +86,7 @@
 }
 /* ------------------------------------------ */
 
-.kcal-view--container .take-over-kcal--btn {
+.kcal-view--container #take-over-kcal--btn {
   align-self: flex-end;
   grid-area: 2 / 5 / 3 / col-end;
   justify-self: right;
@@ -134,13 +134,6 @@
 #delete-kcals-acc--btn .add-kcals-btn--text {
   background-color: var(--details-tertiary-color);
   font-size: 34px;
-}
-
-.user-interaction-feedback,
-#delete-kcals-acc--btn .user-interaction-feedback,
-.take-over-kcal--btn.user-interaction-feedback {
-  background-color: var(--details-primary-color);
-  opacity: 0.75;
 }
 
 /* #endregion */

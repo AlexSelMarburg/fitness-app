@@ -1,3 +1,5 @@
+import * as config from './config.js';
+
 export const wait = function (seconds) {
   return new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
@@ -55,4 +57,19 @@ export const blockingWait = function (seconds) {
       break;
     }
   }
+};
+
+export const isButtonDisabled = function (btn) {
+  return (
+    btn.classList.contains('disabled') ||
+    btn.classList.contains('user-interaction-feedback')
+  );
+};
+
+export const performUserInteractionFeedback = function (btn) {
+  btn.classList.add('user-interaction-feedback');
+
+  wait(config.USER_INTERACTION_DURATION).then(() => {
+    btn.classList.remove('user-interaction-feedback');
+  });
 };

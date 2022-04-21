@@ -14,6 +14,7 @@ const controlNavKcal = function () {
     caloriesView.addHandlerAddKcalClick(controlAddKcals);
     caloriesView.addHandlerResetKcalValueClick(controlResetKcalsValue);
     caloriesView.addHandlerTakeOverKcalsClick(controlTakeOverKcals);
+    caloriesView.handleButtonsDisability(model.state.kcalsAccumulator);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -63,6 +64,7 @@ const controlNavDarkLightMode = function (isLightModeOn) {
 const controlAddKcals = function (kcalsAccumulator) {
   try {
     caloriesView.update(model.getKcalData(kcalsAccumulator));
+    caloriesView.handleButtonsDisability(model.state.kcalsAccumulator);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -73,6 +75,7 @@ const controlResetKcalsValue = function () {
   try {
     model.resetKcalAccumulator();
     caloriesView.update(model.getKcalData());
+    caloriesView.handleButtonsDisability(model.state.kcalsAccumulator);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -83,6 +86,7 @@ const controlTakeOverKcals = function () {
   try {
     model.processKcalAccumulator();
     caloriesView.update(model.getKcalData());
+    caloriesView.handleButtonsDisability(model.state.kcalsAccumulator);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
