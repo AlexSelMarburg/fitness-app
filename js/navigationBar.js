@@ -7,7 +7,7 @@ class NavigationBar {
 
   constructor() {
     this._addHandlerActiveLink();
-    this._addHandlerDarkLightMode();
+    // this._addHandlerDarkLightMode();
   }
 
   init() {
@@ -29,15 +29,15 @@ class NavigationBar {
     );
   }
 
-  _addHandlerDarkLightMode() {
+  addHandlerDarkLightMode(handler) {
     this._toggleModeSwitch.addEventListener(
       'click',
       function (e) {
         const appContainer = document.querySelector('.app-container');
         const indicator = document.querySelector('.indicator');
 
+        handler(appContainer.classList.toggle('light'));
         indicator.style.transition = '0s';
-        appContainer.classList.toggle('light');
 
         wait(0.1).then(() => {
           indicator.style.transition = '0.5s';
@@ -71,6 +71,14 @@ class NavigationBar {
   }
 
   addHandlerDeleteClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.render-delete-view--btn');
+      if (!btn) return;
+      handler();
+    });
+  }
+
+  addHandlerDarkLightToggle(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.render-delete-view--btn');
       if (!btn) return;

@@ -2,6 +2,11 @@ export default class View {
   _data;
   _parentElement = document.querySelector('.views-container');
 
+  static initDarkLightMode(isLightModeOn) {
+    const appContainer = document.querySelector('.app-container');
+    isLightModeOn && appContainer.classList.add('light');
+  }
+
   render(data) {
     if (!data || (Array.isArray(data) && data.length === 0))
       // return this.renderError();

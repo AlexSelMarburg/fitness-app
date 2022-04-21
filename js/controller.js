@@ -1,4 +1,4 @@
-import { wait, getNumberOfWeek } from './helpers.js';
+import View from './views/View.js';
 import * as model from './model.js';
 import navigation from './navigationBar.js';
 import caloriesView from './views/caloriesView.js';
@@ -6,6 +6,7 @@ import manageDataView from './views/manageDataView.js';
 import weightView from './views/weightView.js';
 import dnsView from './views/dnsView.js';
 
+// #region NAV-BAR
 const controlNavKcal = function () {
   try {
     model.resetKcalAccumulator();
@@ -47,15 +48,18 @@ const controlNavDelete = function () {
   }
 };
 
-const controlDeleteAllData = function () {
+const controlNavDarkLightMode = function (isLightModeOn) {
   try {
-    model.clearAllData();
+    model.persistSettingsLightMode(isLightModeOn);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
   }
 };
 
+//#endregion
+
+// #region KCALS-View
 const controlAddKcals = function (kcalsAccumulator) {
   try {
     caloriesView.update(model.getKcalData(kcalsAccumulator));
@@ -84,12 +88,26 @@ const controlTakeOverKcals = function () {
     console.error(err);
   }
 };
+//#endregion
+
+// #region MODEL / DATA
+const controlDeleteAllData = function () {
+  try {
+    model.clearAllData();
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+// #endregion
 
 const init = function () {
+  View.initDarkLightMode(model.getLightModeState());
   navigation.addHandlerKcalClick(controlNavKcal);
   navigation.init();
   navigation.addHandlerWeightClick(controlNavWeight);
   navigation.addHandlerDnsClick(controlNavDNS);
   navigation.addHandlerDeleteClick(controlNavDelete);
+  navigation.addHandlerDarkLightMode(controlNavDarkLightMode);
 };
 init();

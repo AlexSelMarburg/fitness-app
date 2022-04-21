@@ -7,7 +7,7 @@ import {
 } from './helpers.js';
 
 export const state = {
-  setting: {
+  settings: {
     lightMode: false,
   },
   kcalsAccumulator: 0,
@@ -22,11 +22,19 @@ export const state = {
 const init = function () {
   let data = localStorage.getItem('data');
   if (data) state.data = JSON.parse(data);
+
+  let settings = localStorage.getItem('settings');
+  if (settings) state.settings = JSON.parse(settings);
 };
 init();
 
 const persistData = function () {
   localStorage.setItem('data', JSON.stringify(state.data));
+};
+
+export const persistSettingsLightMode = function (isLightModeOn = false) {
+  state.settings.lightMode = isLightModeOn;
+  localStorage.setItem('settings', JSON.stringify(state.settings));
 };
 
 export const clearAllData = function () {
@@ -38,6 +46,10 @@ export const clearAllData = function () {
 
 export const resetKcalAccumulator = function () {
   state.kcalsAccumulator = 0;
+};
+
+export const getLightModeState = function () {
+  return state.settings.lightMode;
 };
 
 export const getKcalData = function (kcalsAccumulator = 0) {
