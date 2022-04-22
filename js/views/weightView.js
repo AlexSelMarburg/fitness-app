@@ -7,6 +7,7 @@ class WeightView extends View {
 
   _generateMarkup() {
     return `  
+   
     <div class="weight-view--container">
 
     <div class="data--container">
@@ -52,15 +53,38 @@ class WeightView extends View {
     </div>
 
     <div class="add-weight--container">
-      <button id="scroll-jump-up--button" class="button button-secondary"></button>
-      <button id="scroll-jump-down--button" class="button button-secondary"></button>
-      <button id="scroll-up--button" class="button button-secondary"></button>
-      <button id="scroll-down--button" class="button button-secondary"></button>
 
-      <div class="add-weight-button--container"></div>
+      <div class="add-weight-button--container">
+
+        <div class="current-weight-value">
+          <p>109,3</p><span>kg</span>
+        </div>
+
+        <button class="button-secondary button button-reset-weight-value ">RESET</button>
+
+        <button class="button-secondary button button-7" data-number-value="7">7</button>
+        <button class="button-secondary button button-8" data-number-value="8">8</button>
+        <button class="button-secondary button button-9" data-number-value="9">9</button>
+        <button class="button-secondary button button-4" data-number-value="4">4</button>
+        <button class="button-secondary button button-5" data-number-value="5">5</button>
+        <button class="button-secondary button button-6" data-number-value="6">6</button>
+        <button class="button-secondary button button-1" data-number-value="1">1</button>
+        <button class="button-secondary button button-2" data-number-value="2">2</button>
+        <button class="button-secondary button button-3" data-number-value="3">3</button>
+        <button class="button-secondary button button-0" data-number-value="0">0</button>
+        <button class="button-secondary button button-comma" data-number-value="10">,</button>
+      </div>
+
+      <button id="scroll-jump-up--button" class="button button-secondary hidden"></button>
+      <button id="scroll-jump-down--button" class="button button-secondary hidden"></button>
+      <button id="scroll-up--button" class="button button-secondary hidden"></button>
+      <button id="scroll-down--button" class="button button-secondary hidden"></button>
+
+
       <button id="add-weight-data--button" class="button">Neuer Eintrag</button>
     </div>
   </div>
+
 
     `;
   }

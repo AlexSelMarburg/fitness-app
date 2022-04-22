@@ -112,6 +112,11 @@ html {
   background-color: var(--details-tertiary-color);
 }
 
+.app-container.light .button-secondary {
+  color: var(--primary-text-color);
+  font-weight: 500;
+}
+
 .button-round {
   border-radius: 50%;
 }
