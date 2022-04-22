@@ -1,11 +1,25 @@
 import * as config from './config.js';
 
+/**
+ * @description This function returns a Promise that will be
+ * resolved after the provided amount of seconds as argument
+ * has passed
+ * @param {float} seconds
+ * @returns Promse
+ */
 export const wait = function (seconds) {
   return new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
   });
 };
 
+/**
+ * @description This function returns a whole number that
+ * represents the week-number of the provided Date. Date
+ * defaults to current date if not provided.
+ * @param {Date} date
+ * @returns weekNumber
+ */
 export const getNumberOfWeek = function (date = new Date()) {
   const tdt = new Date(date.valueOf());
   const dayn = (date.getDay() + 6) % 7;
@@ -50,15 +64,6 @@ export const getDateString = function (date) {
   return date.getFullYear() + '-' + month + '-' + dt;
 };
 
-export const blockingWait = function (seconds) {
-  const start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if (new Date().getTime() - start > seconds * 1000) {
-      break;
-    }
-  }
-};
-
 export const isButtonDisabled = function (btn) {
   return (
     btn.classList.contains('disabled') ||
@@ -68,8 +73,7 @@ export const isButtonDisabled = function (btn) {
 
 export const performUserInteractionFeedback = function (btn) {
   btn.classList.add('user-interaction-feedback');
-
-  wait(config.USER_INTERACTION_DURATION).then(() => {
+  wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
     btn.classList.remove('user-interaction-feedback');
   });
 };

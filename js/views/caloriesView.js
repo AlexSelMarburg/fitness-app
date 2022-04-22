@@ -2,6 +2,7 @@ import View from './View.js';
 import * as help from '../helpers.js';
 
 class CaloriesView extends View {
+  _btn = document.querySelector('#delete-kcals-acc--btn .button-round');
   constructor() {
     super();
   }
@@ -49,8 +50,6 @@ class CaloriesView extends View {
   }
 
   handleButtonsDisability(kcalsAccumulatorValue) {
-    console.log('aaaa');
-
     const btnDeleteKcals = document.querySelector(
       '#delete-kcals-acc--btn .button-round'
     );

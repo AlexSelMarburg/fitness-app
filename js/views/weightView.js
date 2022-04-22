@@ -7,7 +7,6 @@ class WeightView extends View {
 
   _generateMarkup() {
     return `  
-  
     <div class="weight-view--container">
 
     <div class="data--container">
@@ -49,18 +48,20 @@ class WeightView extends View {
         <div class="avg-kcal-value">1875</div>
         <div class="date-value">18.04.2022</div>
       </div>
-     
 
     </div>
 
     <div class="add-weight--container">
-    <button class="scroll-jump-up--button button button-secondary"></button>
-      <button class="scroll-jump-down--button button button-secondary"></button>
-      <button class="scroll-up--button button button-secondary"></button>
-      <button class="scroll-down--button button button-secondary"></button>
-      <button class="add-weight-data--button button">Neuer Eintrag</button>
+      <button id="scroll-jump-up--button" class="button button-secondary"></button>
+      <button id="scroll-jump-down--button" class="button button-secondary"></button>
+      <button id="scroll-up--button" class="button button-secondary"></button>
+      <button id="scroll-down--button" class="button button-secondary"></button>
+
+      <div class="add-weight-button--container"></div>
+      <button id="add-weight-data--button" class="button">Neuer Eintrag</button>
     </div>
   </div>
+
     `;
   }
 }

@@ -1,10 +1,4 @@
-import {
-  wait,
-  getNumberOfWeek,
-  findLastElementByDateString,
-  findLastElementsByWeekNumber,
-  getDateString,
-} from './helpers.js';
+import * as help from './helpers.js';
 
 export const state = {
   settings: {
@@ -19,6 +13,7 @@ export const state = {
   DNS: {},
 };
 
+// #region INITIALIZATION AND DATA PERSISTENCE
 const init = function () {
   let data = localStorage.getItem('data');
   if (data) state.data = JSON.parse(data);
@@ -44,6 +39,8 @@ export const clearAllData = function () {
   // console.log(state);
 };
 
+// #endregion
+
 export const resetKcalAccumulator = function () {
   state.kcalsAccumulator = 0;
 };
@@ -58,10 +55,10 @@ export const getKcalData = function (kcalsAccumulator = 0) {
   data.kcalsAccumulator = state.kcalsAccumulator += kcalsAccumulator;
 
   // get current day iso date-string 'YYYY-MM-DD'
-  const currentDateString = getDateString(new Date());
+  const currentDateString = help.getDateString(new Date());
 
   // try to find matching entery in kcals-arr
-  const todayKcalEntryArr = findLastElementByDateString(
+  const todayKcalEntryArr = help.findLastElementByDateString(
     state.data,
     currentDateString
   );
@@ -70,11 +67,11 @@ export const getKcalData = function (kcalsAccumulator = 0) {
 
   // -------------------------------------------------
 
-  const yesterdayDateString = getDateString(
+  const yesterdayDateString = help.getDateString(
     new Date(new Date().setDate(new Date().getDate() - 1))
   );
 
-  const yesterdayKcalEntryArr = findLastElementByDateString(
+  const yesterdayKcalEntryArr = help.findLastElementByDateString(
     state.data,
     yesterdayDateString
   );
@@ -84,9 +81,9 @@ export const getKcalData = function (kcalsAccumulator = 0) {
     : undefined;
 
   // -------------------------------------------------
-  const allCurrentWeekDaysArr = findLastElementsByWeekNumber(
+  const allCurrentWeekDaysArr = help.findLastElementsByWeekNumber(
     state.data,
-    getNumberOfWeek()
+    help.getNumberOfWeek()
   );
 
   const avgCurrentWeekKcals = allCurrentWeekDaysArr?.reduce(
@@ -100,9 +97,9 @@ export const getKcalData = function (kcalsAccumulator = 0) {
 
   // -------------------------------------------------
   const lastWekkNumber =
-    getNumberOfWeek() - 1 >= 1 ? getNumberOfWeek() - 1 : 52;
+    help.getNumberOfWeek() - 1 >= 1 ? help.getNumberOfWeek() - 1 : 52;
 
-  const allLastWeekDaysArr = findLastElementsByWeekNumber(
+  const allLastWeekDaysArr = help.findLastElementsByWeekNumber(
     state.data,
     lastWekkNumber
   );
@@ -116,12 +113,11 @@ export const getKcalData = function (kcalsAccumulator = 0) {
 };
 
 export const processKcalAccumulator = function () {
-  const currentDateString = getDateString(new Date());
+  const currentDateString = help.getDateString(new Date());
   const lastKcalsArr = state.data?.at(-1);
   const currentKcalsArr =
     lastKcalsArr?.at(0) === currentDateString ? lastKcalsArr : new Array();
 
-  // console.log(isCurrentDateKcalCaptured);
   if (!!currentKcalsArr.length) {
     currentKcalsArr[1] += state.kcalsAccumulator;
   } else {
