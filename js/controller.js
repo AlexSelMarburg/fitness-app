@@ -24,7 +24,7 @@ const controlNavKcal = function () {
 const controlNavWeight = function () {
   try {
     weightView.render('dummy data');
-    weightView.addHandlerNewWeightEntryClick(controlAddWeightData);
+    weightView.addHandlerNewWeightEntryClick();
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);

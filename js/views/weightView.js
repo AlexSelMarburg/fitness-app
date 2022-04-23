@@ -6,17 +6,17 @@ class WeightView extends View {
     super();
   }
 
-  addHandlerNewWeightEntryClick(handler) {
-    document.querySelector('.add-weight--container').addEventListener(
+  addHandlerNewWeightEntryClick() {
+    document.getElementById('add-weight-data--button').addEventListener(
       'click',
       function (e) {
-        const btn = e.target.closest('#add-weight-data--button');
+        if (help.isButtonDisabled(e.target)) return;
+        help.wait(0.2).then(() => {
+          e.target.classList.add('hidden');
+          this._toggleAddWeightInputVisibility();
+        });
 
-        if (!btn || help.isButtonDisabled(btn)) return;
-        this._toggleAddWeightInputVisibility();
-        handler();
-
-        help.performUserInteractionFeedback(btn);
+        help.performUserInteractionFeedback(e.target);
       }.bind(this)
     );
   }
@@ -31,6 +31,8 @@ class WeightView extends View {
       'scroll-jump-down--button',
       'scroll-up--button',
       'scroll-down--button',
+      'close-weight-data-container--button',
+      'save-weight-data--button',
     ].forEach(id =>
       document.querySelector(`#${id}`).classList.toggle('hidden')
     );
@@ -88,7 +90,7 @@ class WeightView extends View {
       <div class="add-weight-button--container hidden">
 
         <div class="current-weight-value">
-          <p>109,3</p><span>kg</span>
+          <p>0</p><span>kg</span>
         </div>
 
         <button class="button-secondary button button-reset-weight-value ">RESET</button>
@@ -104,6 +106,7 @@ class WeightView extends View {
         <button class="button-secondary button button-3" data-number-value="3">3</button>
         <button class="button-secondary button button-0" data-number-value="0">0</button>
         <button class="button-secondary button button-comma" data-number-value="10">,</button>
+     
       </div>
 
       <button id="scroll-jump-up--button" class="button button-secondary"></button>
@@ -111,6 +114,8 @@ class WeightView extends View {
       <button id="scroll-up--button" class="button button-secondary"></button>
       <button id="scroll-down--button" class="button button-secondary"></button>
 
+      <button id="save-weight-data--button" class="button hidden">Speichern</button>
+      <button id="close-weight-data-container--button" class="button hidden">Abbruch</button>
 
       <button id="add-weight-data--button" class="button">Neuer Eintrag</button>
     </div>

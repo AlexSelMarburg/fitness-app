@@ -13,7 +13,7 @@ class CaloriesView extends View {
       .addEventListener('click', function (e) {
         const btn = e.target.closest('.add-kcals--btn');
 
-        if (!btn || help.isButtonDisabled(btn)) return;
+        if (!btn || help.isButtonDisabled(btn.querySelector('p'))) return;
 
         const addedValue = Number(btn.dataset.kcalValue);
 

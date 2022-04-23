@@ -18,7 +18,7 @@
   column-gap: 10px;
   display: grid;
   grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   height: 240px;
   padding: 5px;
   row-gap: 10px;
@@ -34,16 +34,16 @@
 }
 
 #scroll-up--button {
-  grid-area: 4 / 4 / 5 / 5;
+  grid-area: 4 / 5 / 5 / 6;
 }
 
 #scroll-down--button {
-  grid-area: 4 / 5 / 5 / 6;
+  grid-area: 4 / 6 / 5 / 7;
 }
 
 /* #region ADD-WEIGHT-CONTAINER  */
 .add-weight-button--container {
-  grid-area: 1 / 1 / 5 / 6;
+  grid-area: 1 / 1 / 5 / 7;
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(6, 1fr);
@@ -60,6 +60,7 @@
   justify-content: center;
   font-size: 44px;
   align-self: flex-start;
+  /* background-color: #fff; */
 }
 
 .current-weight-value span {
@@ -109,9 +110,17 @@
   grid-area: 1 / 4 / 2 / 5;
 }
 
+#close-weight-data-container--button {
+  grid-area: 5 / 1 / 6 / 4;
+}
+
+#save-weight-data--button {
+  grid-area: 5 / 4 / 6 / 7;
+}
+
 #add-weight-data--button {
   align-self: end;
-  grid-area: 5 / 1 / 6 / 6;
+  grid-area: 5 / 1 / 6 / 7;
 }
 
 /* #endregion */

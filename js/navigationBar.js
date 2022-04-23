@@ -5,28 +5,17 @@ class NavigationBar {
   _navigationLinks = document.querySelectorAll('.list');
   _toggleModeSwitch = document.querySelector('.switch');
 
-  constructor() {
-    this._addHandlerActiveLink();
-    // this._addHandlerDarkLightMode();
-  }
+  constructor() {}
 
   init() {
     document.querySelector('.navigation ul li').click();
   }
 
-  _addHandlerActiveLink() {
-    this._parentElement.addEventListener(
-      'click',
-      function (e) {
-        const btn = e.target.closest('.list');
-        if (!btn) return;
-
-        this._navigationLinks.forEach(li => {
-          li.classList.remove('active');
-        });
-        btn.closest('.list').classList.add('active');
-      }.bind(this)
-    );
+  _toggleActiveLink(btn) {
+    this._navigationLinks.forEach(li => {
+      li.classList.remove('active');
+    });
+    btn.classList.add('active');
   }
 
   addHandlerDarkLightMode(handler) {
@@ -47,35 +36,51 @@ class NavigationBar {
   }
 
   addHandlerKcalClick(handler) {
-    this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.render-kcal-view--btn');
-      if (!btn) return;
-      handler();
-    });
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.render-kcal-view--btn');
+        if (!btn || btn.classList.contains('active')) return;
+        this._toggleActiveLink(btn);
+        handler();
+      }.bind(this)
+    );
   }
 
   addHandlerWeightClick(handler) {
-    this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.render-weight-view--btn');
-      if (!btn) return;
-      handler();
-    });
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.render-weight-view--btn');
+        if (!btn || btn.classList.contains('active')) return;
+        this._toggleActiveLink(btn);
+        handler();
+      }.bind(this)
+    );
   }
 
   addHandlerDnsClick(handler) {
-    this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.render-dns-view--btn');
-      if (!btn) return;
-      handler();
-    });
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.render-dns-view--btn');
+        if (!btn || btn.classList.contains('active')) return;
+        this._toggleActiveLink(btn);
+        handler();
+      }.bind(this)
+    );
   }
 
   addHandlerDeleteClick(handler) {
-    this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.render-delete-view--btn');
-      if (!btn) return;
-      handler();
-    });
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.render-delete-view--btn');
+        if (!btn || btn.classList.contains('active')) return;
+        this._toggleActiveLink(btn);
+        handler();
+      }.bind(this)
+    );
   }
 
   addHandlerDarkLightToggle(handler) {
