@@ -1,8 +1,39 @@
 import View from './View.js';
+import * as help from '../helpers.js';
 
 class WeightView extends View {
   constructor() {
     super();
+  }
+
+  addHandlerNewWeightEntryClick(handler) {
+    document.querySelector('.add-weight--container').addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('#add-weight-data--button');
+
+        if (!btn || help.isButtonDisabled(btn)) return;
+        this._toggleAddWeightInputVisibility();
+        handler();
+
+        help.performUserInteractionFeedback(btn);
+      }.bind(this)
+    );
+  }
+
+  _toggleAddWeightInputVisibility() {
+    document
+      .querySelector('.add-weight-button--container')
+      .classList.toggle('hidden');
+
+    [
+      'scroll-jump-up--button',
+      'scroll-jump-down--button',
+      'scroll-up--button',
+      'scroll-down--button',
+    ].forEach(id =>
+      document.querySelector(`#${id}`).classList.toggle('hidden')
+    );
   }
 
   _generateMarkup() {
@@ -54,7 +85,7 @@ class WeightView extends View {
 
     <div class="add-weight--container">
 
-      <div class="add-weight-button--container">
+      <div class="add-weight-button--container hidden">
 
         <div class="current-weight-value">
           <p>109,3</p><span>kg</span>
@@ -75,10 +106,10 @@ class WeightView extends View {
         <button class="button-secondary button button-comma" data-number-value="10">,</button>
       </div>
 
-      <button id="scroll-jump-up--button" class="button button-secondary hidden"></button>
-      <button id="scroll-jump-down--button" class="button button-secondary hidden"></button>
-      <button id="scroll-up--button" class="button button-secondary hidden"></button>
-      <button id="scroll-down--button" class="button button-secondary hidden"></button>
+      <button id="scroll-jump-up--button" class="button button-secondary"></button>
+      <button id="scroll-jump-down--button" class="button button-secondary"></button>
+      <button id="scroll-up--button" class="button button-secondary"></button>
+      <button id="scroll-down--button" class="button button-secondary"></button>
 
 
       <button id="add-weight-data--button" class="button">Neuer Eintrag</button>

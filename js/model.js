@@ -5,6 +5,7 @@ export const state = {
     lightMode: false,
   },
   kcalsAccumulator: 0,
+  weightValue: 0,
   data: [
     // ['2022-04-16', 110],
     // ['2022-04-16', 110],

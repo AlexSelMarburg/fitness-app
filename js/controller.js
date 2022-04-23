@@ -24,6 +24,7 @@ const controlNavKcal = function () {
 const controlNavWeight = function () {
   try {
     weightView.render('dummy data');
+    weightView.addHandlerNewWeightEntryClick(controlAddWeightData);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -98,6 +99,17 @@ const controlTakeOverKcals = function () {
 const controlDeleteAllData = function () {
   try {
     model.clearAllData();
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+// #endregion
+
+// #region  WEIGHT-VIEW
+const controlAddWeightData = function () {
+  try {
+    // model.persistSettingsLightMode(isLightModeOn);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);

@@ -36,7 +36,7 @@
   --details-primary-color: #d82733;
   --details-secondary-color: #d82733;
   --details-tertiary-color: #a9dcec;
-  --details-fourth-color: #e1dfdf;
+  --details-fourth-color: #eee7e7;
 
   --primary-text-color: #111c36;
   --secondary-text-color: #d82733;
@@ -132,5 +132,5 @@ html {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
