@@ -5,7 +5,7 @@ export const state = {
     lightMode: false,
   },
   kcalsAccumulator: 0,
-  weightValue: 0,
+  weightValue: '',
   data: [
     // ['2022-04-16', 110],
     // ['2022-04-16', 110],
@@ -42,12 +42,13 @@ export const clearAllData = function () {
 
 // #endregion
 
-export const resetKcalAccumulator = function () {
-  state.kcalsAccumulator = 0;
-};
-
 export const getLightModeState = function () {
   return state.settings.lightMode;
+};
+
+// #region Kcal-View
+export const resetKcalAccumulator = function () {
+  state.kcalsAccumulator = 0;
 };
 
 export const getKcalData = function (kcalsAccumulator = 0) {
@@ -127,3 +128,38 @@ export const processKcalAccumulator = function () {
   persistData();
   resetKcalAccumulator();
 };
+// #endregion
+
+// #region Weight-View
+export const resetWeightValue = function () {
+  state.weightValue = '';
+};
+
+export const getWeightData = function (weightValue = '') {
+  const data = {};
+  // console.log(weightValue);
+  // console.log(weightValue);
+  // console.log(state.weightValue);
+
+  data.weightValue = state.weightValue += weightValue;
+  // console.log(state.weightValue);
+
+  return data;
+};
+
+export const processweightValue = function () {
+  const currentDateString = help.getDateString(new Date());
+  const lastKcalsArr = state.data?.at(-1);
+  const currentKcalsArr =
+    lastKcalsArr?.at(0) === currentDateString ? lastKcalsArr : new Array();
+
+  if (!!currentKcalsArr.length) {
+    currentKcalsArr[1] += state.kcalsAccumulator;
+  } else {
+    state.data.push([currentDateString, state.kcalsAccumulator]);
+  }
+  persistData();
+  resetKcalAccumulator();
+};
+
+// #endregion

@@ -35,12 +35,12 @@
 
   --details-primary-color: #d82733;
   --details-secondary-color: #d82733;
-  --details-tertiary-color: #a9dcec;
-  --details-fourth-color: #eee7e7;
+  --details-tertiary-color: #a0d7e7;
+  --details-fourth-color: #fffbfb;
 
   --primary-text-color: #111c36;
   --secondary-text-color: #d82733;
-  --user-interaction-color: #233043;
+  --user-interaction-color: #ffe93b;
 
   --nav-icons-active-filter-values: invert(100%) sepia(33%) saturate(2%)
     hue-rotate(327deg) brightness(112%) contrast(101%);

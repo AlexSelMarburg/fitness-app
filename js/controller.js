@@ -23,8 +23,12 @@ const controlNavKcal = function () {
 
 const controlNavWeight = function () {
   try {
+    model.resetWeightValue();
     weightView.render('dummy data');
     weightView.addHandlerNewWeightEntryClick();
+    weightView.addHandlerAbortClick(controlAbortWeightData);
+    weightView.addHandlerAddWeightBtnClick(controlAddWeight);
+    weightView.addHandlerResetWeightValueClick(controlResetWeightValue);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -107,9 +111,33 @@ const controlDeleteAllData = function () {
 // #endregion
 
 // #region  WEIGHT-VIEW
-const controlAddWeightData = function () {
+
+const controlResetWeightValue = function () {
   try {
-    // model.persistSettingsLightMode(isLightModeOn);
+    model.resetWeightValue();
+    weightView.update(model.getWeightData());
+    weightView.handleNumButtonsDisability(model.state.weightValue);
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+
+const controlAbortWeightData = function () {
+  try {
+    model.resetWeightValue();
+    weightView.update(model.getWeightData());
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+
+const controlAddWeight = function (weightValue) {
+  try {
+    // console.log(weightValue);
+    weightView.update(model.getWeightData(weightValue));
+    weightView.handleNumButtonsDisability(model.state.weightValue);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);

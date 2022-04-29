@@ -49,9 +49,11 @@ export default class View {
       if (!newEl.isEqualNode(curEl)) {
         // console.log(curEl);
 
-        Array.from(newEl.attributes).forEach(attr =>
-          curEl.setAttribute(attr.name, attr.value)
-        );
+        Array.from(newEl.attributes).forEach(attr => {
+          if (attr.name !== 'class' && attr.value !== 'hidden') {
+            curEl.setAttribute(attr.name, attr.value);
+          }
+        });
       }
     });
   }
