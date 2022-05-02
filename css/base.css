@@ -127,6 +127,10 @@ html {
   background-color: var(--user-interaction-color);
 }
 
+.app-container.light .user-interaction-feedback {
+  color: var(--primary-text-color);
+}
+
 .disabled {
   opacity: 0.45;
 }

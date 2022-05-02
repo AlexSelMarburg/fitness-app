@@ -25,7 +25,7 @@ const controlNavWeight = function () {
   try {
     model.resetWeightValue();
     weightView.render('dummy data');
-    weightView.addHandlerNewWeightEntryClick();
+    weightView.addHandlerNewWeightEntryClick(controlNewWeightDataEntry);
     weightView.addHandlerAbortClick(controlAbortWeightData);
     weightView.addHandlerAddWeightBtnClick(controlAddWeight);
     weightView.addHandlerResetWeightValueClick(controlResetWeightValue);
@@ -112,6 +112,17 @@ const controlDeleteAllData = function () {
 
 // #region  WEIGHT-VIEW
 
+const controlNewWeightDataEntry = function () {
+  try {
+    model.resetWeightValue();
+    weightView.update(model.getWeightData());
+    weightView.handleNumButtonsDisability(model.state.weightValue);
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+
 const controlResetWeightValue = function () {
   try {
     model.resetWeightValue();
@@ -127,6 +138,7 @@ const controlAbortWeightData = function () {
   try {
     model.resetWeightValue();
     weightView.update(model.getWeightData());
+    weightView.handleNumButtonsDisability(model.state.weightValue);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);

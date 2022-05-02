@@ -6,7 +6,7 @@ class WeightView extends View {
     super();
   }
 
-  addHandlerNewWeightEntryClick() {
+  addHandlerNewWeightEntryClick(handler) {
     document.getElementById('add-weight-data--button').addEventListener(
       'click',
       function (e) {
@@ -14,7 +14,7 @@ class WeightView extends View {
         help.wait(0.2).then(() => {
           this._toggleAddWeightInputVisibility();
         });
-
+        handler();
         help.performUserInteractionFeedback(e.target);
       }.bind(this)
     );
@@ -65,20 +65,48 @@ class WeightView extends View {
   }
 
   handleNumButtonsDisability(weightValue) {
-    const resetBtn = document.querySelector('.button-reset-weight-value');
-    const zeroBtn = document.querySelector('.button-0');
-    const commaBtn = document.querySelector('.button-comma');
-    // console.log('qqqq');
-    console.log(weightValue.length);
+    const resetBtn = document.querySelector('.button-reset-weight-value'),
+      zeroBtn = document.querySelector('.button-0'),
+      commaBtn = document.querySelector('.button-comma'),
+      saveBtn = document.querySelector('#save-weight-data--button');
 
     if (weightValue.length) {
       resetBtn.classList.remove('disabled');
+      zeroBtn.classList.remove('disabled');
+    } else {
+      zeroBtn.classList.add('disabled');
+      resetBtn.classList.add('disabled');
     }
 
-    if (weightValue.length >= 2 || !weightValue.includes(',')) {
+    const regularExp = /^[1-9]\d{1,2}(?:,\d{1})?$/g;
+    if (regularExp.test(weightValue)) {
+      saveBtn.classList.remove('disabled');
+    } else {
+      saveBtn.classList.add('disabled');
+    }
+
+    if (
+      weightValue.length >= 2 &&
+      weightValue.length <= 3 &&
+      !weightValue.includes(',')
+    ) {
       commaBtn.classList.remove('disabled');
     } else {
       commaBtn.classList.add('disabled');
+    }
+
+    if (
+      (weightValue.length >= 3 && !weightValue.includes(',')) ||
+      weightValue.slice(weightValue.indexOf(','), weightValue.length).length >=
+        2
+    ) {
+      for (let i = 0; i <= 9; i++) {
+        document.querySelector(`.button-${i}`).classList.add('disabled');
+      }
+    } else {
+      for (let i = 1; i <= 9; i++) {
+        document.querySelector(`.button-${i}`).classList.remove('disabled');
+      }
     }
   }
 
