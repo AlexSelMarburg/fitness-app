@@ -1,5 +1,6 @@
 import View from './View.js';
 import * as help from '../helpers.js';
+import * as config from '../config.js';
 
 class WeightView extends View {
   constructor() {
@@ -64,6 +65,25 @@ class WeightView extends View {
       });
   }
 
+  addHandlerPersistWeightDataClick(handler) {
+    document.querySelector('.add-weight--container').addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('#save-weight-data--button');
+
+        if (!btn || help.isButtonDisabled(btn)) return;
+
+        help.wait(0.2).then(() => {
+          this._toggleAddWeightInputVisibility();
+        });
+
+        help.performUserInteractionFeedback(btn);
+
+        handler();
+      }.bind(this)
+    );
+  }
+
   handleNumButtonsDisability(weightValue) {
     const resetBtn = document.querySelector('.button-reset-weight-value'),
       zeroBtn = document.querySelector('.button-0'),
@@ -79,7 +99,11 @@ class WeightView extends View {
     }
 
     const regularExp = /^[1-9]\d{1,2}(?:,\d{1})?$/g;
-    if (regularExp.test(weightValue)) {
+    if (
+      regularExp.test(weightValue) &&
+      Number(weightValue.replace(',', '.')) >= config.MIN_VALID_KG_VALUE &&
+      Number(weightValue.replace(',', '.')) <= config.MAX_VALID_KG_VALUE
+    ) {
       saveBtn.classList.remove('disabled');
     } else {
       saveBtn.classList.add('disabled');
@@ -149,36 +173,9 @@ class WeightView extends View {
         <p class="weight-difference-heading">Datum</p>
       </div>
 
-      <div class="persisted-weight-data">
-        <div class="kg-value">109,8</div>
-        <div class="kg-difference-value">-0,5</div>
-        <div class="avg-kcal-value">1875</div>
-        <div class="date-value">18.04.2022</div>
-      </div>
-      <div class="persisted-weight-data">
-        <div class="kg-value">109,8</div>
-        <div class="kg-difference-value">-0,5</div>
-        <div class="avg-kcal-value">1875</div>
-        <div class="date-value">18.04.2022</div>
-      </div>
-      <div class="persisted-weight-data">
-        <div class="kg-value">109,8</div>
-        <div class="kg-difference-value">-0,5</div>
-        <div class="avg-kcal-value">1875</div>
-        <div class="date-value">18.04.2022</div>
-      </div>
-      <div class="persisted-weight-data">
-        <div class="kg-value">109,8</div>
-        <div class="kg-difference-value">-0,5</div>
-        <div class="avg-kcal-value">1875</div>
-        <div class="date-value">18.04.2022</div>
-      </div>
-      <div class="persisted-weight-data">
-        <div class="kg-value">109,8</div>
-        <div class="kg-difference-value">-0,5</div>
-        <div class="avg-kcal-value">1875</div>
-        <div class="date-value">18.04.2022</div>
-      </div>
+      ${this._data.measurements
+        .map(measurement => this._generateMarkupWeightMeasurement(measurement))
+        .join('')}
 
     </div>
 
@@ -217,9 +214,18 @@ class WeightView extends View {
       <button id="add-weight-data--button" class="button">Neuer Eintrag</button>
     </div>
   </div>
-
-
     `;
+  }
+
+  _generateMarkupWeightMeasurement(measurement) {
+    return `
+    <div class="persisted-weight-data">
+      <div class="kg-value">${measurement[0]}</div>
+      <div class="kg-difference-value">${measurement[1]}</div>
+      <div class="avg-kcal-value">${measurement[2]}</div>
+      <div class="date-value">${measurement[3]}</div>
+    </div>
+  `;
   }
 }
 

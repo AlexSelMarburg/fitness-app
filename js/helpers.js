@@ -77,3 +77,11 @@ export const performUserInteractionFeedback = function (btn) {
     btn.classList.remove('user-interaction-feedback');
   });
 };
+
+export const getLocalDateFormatFromString = function (datestring) {
+  return new Intl.DateTimeFormat(config.LANGUAGE_LOCALE, {
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit',
+  }).format(new Date(datestring));
+};

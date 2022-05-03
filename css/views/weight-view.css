@@ -141,6 +141,7 @@
 
 .weight-view--container .persisted-weight-data {
   min-height: 38px;
+  max-height: 52px;
   flex-grow: 1.5;
   margin-bottom: 10px;
 }

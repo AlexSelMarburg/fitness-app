@@ -14,7 +14,7 @@ const controlNavKcal = function () {
     caloriesView.addHandlerAddKcalClick(controlAddKcals);
     caloriesView.addHandlerResetKcalValueClick(controlResetKcalsValue);
     caloriesView.addHandlerTakeOverKcalsClick(controlTakeOverKcals);
-    caloriesView.handleButtonsDisability(model.state.kcalsAccumulator);
+    caloriesView.handleButtonsDisability(controlPersistWeightData);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -24,11 +24,12 @@ const controlNavKcal = function () {
 const controlNavWeight = function () {
   try {
     model.resetWeightValue();
-    weightView.render('dummy data');
+    weightView.render(model.getWeightData());
     weightView.addHandlerNewWeightEntryClick(controlNewWeightDataEntry);
     weightView.addHandlerAbortClick(controlAbortWeightData);
     weightView.addHandlerAddWeightBtnClick(controlAddWeight);
     weightView.addHandlerResetWeightValueClick(controlResetWeightValue);
+    weightView.addHandlerPersistWeightDataClick(controlPersistWeightData);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -149,6 +150,18 @@ const controlAddWeight = function (weightValue) {
   try {
     // console.log(weightValue);
     weightView.update(model.getWeightData(weightValue));
+    weightView.handleNumButtonsDisability(model.state.weightValue);
+  } catch (err) {
+    // caloriesView.renderError();
+    console.error(err);
+  }
+};
+
+const controlPersistWeightData = function () {
+  try {
+    model.processWeightValue();
+    model.resetWeightValue();
+    weightView.update(model.getWeightData());
     weightView.handleNumButtonsDisability(model.state.weightValue);
   } catch (err) {
     // caloriesView.renderError();

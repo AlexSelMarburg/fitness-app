@@ -137,29 +137,39 @@ export const resetWeightValue = function () {
 
 export const getWeightData = function (weightValue = '') {
   const data = {};
-  // console.log(weightValue);
-  // console.log(weightValue);
-  // console.log(state.weightValue);
 
   data.weightValue = state.weightValue += weightValue;
-  // console.log(state.weightValue);
 
+  // TODO: fake data!!!
+  data.measurements = [
+    // [Gewicht, Differenz, DNS, Datum]
+    [110, -0.5, 1805, help.getLocalDateFormatFromString('2022-04-16')],
+    [109.3, 0.3, 2005, help.getLocalDateFormatFromString('2022-04-16')],
+    [109.3, 0.3, 1983, help.getLocalDateFormatFromString('2022-04-16')],
+    [109.3, 0.3, 1983, help.getLocalDateFormatFromString('2022-04-16')],
+    [109.3, 0.3, 1983, help.getLocalDateFormatFromString('2022-04-16')],
+  ];
   return data;
 };
 
-export const processweightValue = function () {
+export const processWeightValue = function () {
   const currentDateString = help.getDateString(new Date());
   const lastKcalsArr = state.data?.at(-1);
   const currentKcalsArr =
     lastKcalsArr?.at(0) === currentDateString ? lastKcalsArr : new Array();
 
   if (!!currentKcalsArr.length) {
-    currentKcalsArr[1] += state.kcalsAccumulator;
+    currentKcalsArr[2] = Number(state.weightValue.replace(',', '.'));
   } else {
-    state.data.push([currentDateString, state.kcalsAccumulator]);
+    state.data.push([
+      currentDateString,
+      0,
+      Number(state.weightValue.replace(',', '.')),
+    ]);
   }
   persistData();
-  resetKcalAccumulator();
+  resetWeightValue();
+  console.log(state.data);
 };
 
 // #endregion
