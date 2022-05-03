@@ -6,7 +6,7 @@
 }
 
 .weight-view--container .data--container {
-  height: calc(100% - 240px);
+  height: calc(100% - 250px);
   padding: 5px;
   width: 100%;
 
@@ -19,9 +19,9 @@
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(6, 1fr);
-  height: 240px;
+  height: 250px;
   padding: 5px;
-  row-gap: 10px;
+  row-gap: 20px;
   width: 100%;
 }
 
@@ -43,12 +43,13 @@
 
 /* #region ADD-WEIGHT-CONTAINER  */
 .add-weight-button--container {
-  grid-area: 1 / 1 / 5 / 7;
+  align-items: flex-end;
+  column-gap: 10px;
+  row-gap: 10px;
   display: grid;
+  grid-area: 1 / 1 / 5 / 7;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(6, 1fr);
-  column-gap: 10px;
-  align-items: flex-end;
 }
 
 .current-weight-value {
@@ -140,8 +141,8 @@
 }
 
 .weight-view--container .persisted-weight-data {
-  min-height: 38px;
-  max-height: 52px;
+  min-height: 36px;
+  max-height: 58px;
   flex-grow: 1.5;
   margin-bottom: 10px;
 }

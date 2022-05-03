@@ -146,17 +146,6 @@ class WeightView extends View {
     ].forEach(id =>
       document.querySelector(`#${id}`).classList.toggle('hidden')
     );
-
-    // [
-    //   'scroll-jump-up--button',
-    //   'scroll-jump-down--button',
-    //   'scroll-up--button',
-    //   'scroll-down--button',
-    //   'close-weight-data-container--button',
-    //   'save-weight-data--button',
-    // ].forEach(id =>
-    //   document.querySelector(`#${id}`).classList.toggle('hidden')
-    // );
   }
 
   _generateMarkup() {
