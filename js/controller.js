@@ -14,7 +14,7 @@ const controlNavKcal = function () {
     caloriesView.addHandlerAddKcalClick(controlAddKcals);
     caloriesView.addHandlerResetKcalValueClick(controlResetKcalsValue);
     caloriesView.addHandlerTakeOverKcalsClick(controlTakeOverKcals);
-    caloriesView.handleButtonsDisability(controlPersistWeightData);
+    caloriesView.handleButtonsDisability(model.state.kcalsAccumulator);
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
