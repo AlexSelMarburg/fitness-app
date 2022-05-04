@@ -142,6 +142,7 @@ export const getWeightData = function (weightValue = '') {
 
   // TODO: pagination beachten
 
+  // TODO: kcals durchschnitt zw. den berechnenen vergessen!!!
   // 1) arrays mit länge 3 (reversed) aus state.data
   const measurements = [];
   for (let i = state.data.length - 1; i >= 0; i--) {

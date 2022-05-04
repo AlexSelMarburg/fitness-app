@@ -33,6 +33,7 @@ export default class View {
 
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
+      if (!curEl) return;
       // console.log(curEl, newEl.isEqualNode(curEl));
 
       // Updates changed TEXT
@@ -42,11 +43,12 @@ export default class View {
       ) {
         // console.log('🎈', curEl);
         // console.log('💥', newEl);
-        curEl.textContent = newEl.textContent;
+
+        if (curEl) curEl.textContent = newEl.textContent;
       }
 
       // Updates changed ATTRIBUES
-      if (!newEl.isEqualNode(curEl)) {
+      if (curEl && !newEl.isEqualNode(curEl)) {
         // console.log(curEl);
 
         Array.from(newEl.attributes).forEach(attr => {

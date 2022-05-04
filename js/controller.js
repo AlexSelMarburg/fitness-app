@@ -5,6 +5,7 @@ import caloriesView from './views/caloriesView.js';
 import manageDataView from './views/manageDataView.js';
 import weightView from './views/weightView.js';
 import dnsView from './views/dnsView.js';
+import navigationBar from './navigationBar.js';
 
 // #region NAV-BAR
 const controlNavKcal = function () {
@@ -161,8 +162,8 @@ const controlPersistWeightData = function () {
   try {
     model.processWeightValue();
     model.resetWeightValue();
-    weightView.update(model.getWeightData());
-    weightView.handleNumButtonsDisability(model.state.weightValue);
+    controlNavWeight.call(navigation);
+    // weightView.update(model.getWeightData());
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);

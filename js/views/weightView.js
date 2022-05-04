@@ -73,13 +73,11 @@ class WeightView extends View {
 
         if (!btn || help.isButtonDisabled(btn)) return;
 
+        help.performUserInteractionFeedback(btn);
         help.wait(0.2).then(() => {
           this._toggleAddWeightInputVisibility();
+          handler();
         });
-
-        help.performUserInteractionFeedback(btn);
-
-        handler();
       }.bind(this)
     );
   }
@@ -144,7 +142,7 @@ class WeightView extends View {
       'save-weight-data--button',
       'add-weight-data--button',
     ].forEach(id =>
-      document.querySelector(`#${id}`).classList.toggle('hidden')
+      document.querySelector(`#${id}`)?.classList.toggle('hidden')
     );
   }
 
