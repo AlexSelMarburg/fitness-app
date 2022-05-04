@@ -151,7 +151,9 @@ export const getWeightData = function (weightValue = '') {
   // 2) push differece to arr
   for (let i = 0; i < measurements.length; i++) {
     if (i !== measurements.length - 1) {
-      measurements[i].push(measurements[i][2] - measurements[i + 1][2]);
+      measurements[i].push(
+        (measurements[i][2] - measurements[i + 1][2]).toFixed(1)
+      );
     } else {
       measurements[i].push('k.A');
     }
