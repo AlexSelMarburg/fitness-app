@@ -211,7 +211,7 @@ class WeightView extends View {
 
     return `
     <div class="persisted-weight-data">
-      <div class="kg-value">${weight}</div>
+      <div class="kg-value">${weight.toFixed(1)}</div>
       <div class="kg-difference-value">${weightDifference}</div>
       <div class="avg-kcal-value">${kcals}</div>
       <div class="date-value">${help.getLocalDateFormatFromString(date)}</div>
