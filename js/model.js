@@ -140,15 +140,24 @@ export const getWeightData = function (weightValue = '') {
 
   data.weightValue = state.weightValue += weightValue;
 
-  // TODO: fake data!!!
-  data.measurements = [
-    // [Gewicht, Differenz, DNS, Datum]
-    [110, -0.5, 1805, help.getLocalDateFormatFromString('2022-04-16')],
-    [109.3, 0.3, 2005, help.getLocalDateFormatFromString('2022-04-16')],
-    [109.3, 0.3, 1983, help.getLocalDateFormatFromString('2022-04-16')],
-    [109.3, 0.3, 1983, help.getLocalDateFormatFromString('2022-04-16')],
-    [109.3, 0.3, 1983, help.getLocalDateFormatFromString('2022-04-16')],
-  ];
+  // TODO: pagination beachten
+
+  // 1) arrays mit länge 3 (reversed) aus state.data
+  const measurements = [];
+  for (let i = state.data.length - 1; i >= 0; i--) {
+    if (state.data[i].length >= 3) measurements.push(state.data[i]);
+  }
+
+  // 2) push differece to arr
+  for (let i = 0; i < measurements.length; i++) {
+    if (i !== measurements.length - 1) {
+      measurements[i].push(measurements[i][2] - measurements[i + 1][2]);
+    } else {
+      measurements[i].push('k.A');
+    }
+  }
+  data.measurements = measurements;
+
   return data;
 };
 
@@ -169,7 +178,6 @@ export const processWeightValue = function () {
   }
   persistData();
   resetWeightValue();
-  console.log(state.data);
 };
 
 // #endregion

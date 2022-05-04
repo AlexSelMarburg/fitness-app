@@ -207,12 +207,14 @@ class WeightView extends View {
   }
 
   _generateMarkupWeightMeasurement(measurement) {
+    const [date, kcals, weight, weightDifference] = measurement;
+
     return `
     <div class="persisted-weight-data">
-      <div class="kg-value">${measurement[0]}</div>
-      <div class="kg-difference-value">${measurement[1]}</div>
-      <div class="avg-kcal-value">${measurement[2]}</div>
-      <div class="date-value">${measurement[3]}</div>
+      <div class="kg-value">${weight}</div>
+      <div class="kg-difference-value">${weightDifference}</div>
+      <div class="avg-kcal-value">${kcals}</div>
+      <div class="date-value">${help.getLocalDateFormatFromString(date)}</div>
     </div>
   `;
   }
