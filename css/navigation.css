@@ -10,7 +10,8 @@
   grid-column-start: 1;
   grid-column-end: 2;
   height: 60px;
-  justify-content: left;
+  /* justify-content: left; */
+  justify-content: space-between;
   padding-left: 17px;
   position: relative;
 }
@@ -135,6 +136,7 @@
   justify-content: center;
   min-width: 60px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .navigation .toggle-switch .switch {

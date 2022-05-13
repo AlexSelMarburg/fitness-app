@@ -132,9 +132,9 @@ html {
 }
 
 .disabled {
-  opacity: 0.45;
+  opacity: 0.5;
   transition: opacity 0s;
-  transition-delay: 0.15s;
+  transition-delay: 0.1s;
 }
 
 .hidden {

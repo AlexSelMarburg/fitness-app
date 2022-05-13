@@ -1,4 +1,5 @@
 import * as help from './helpers.js';
+import * as config from './config.js';
 
 export const state = {
   settings: {
@@ -6,6 +7,8 @@ export const state = {
   },
   kcalsAccumulator: 0,
   weightValue: '',
+  firstWeightResultToDisplay: 1,
+  allWeightValueDataCount: 0,
   data: [
     // ['2022-04-16', 1805kcals, 102,3kg],
     // ['2022-04-16', 1805kcals, 102,3kg],
@@ -14,7 +17,9 @@ export const state = {
   DNS: {},
 };
 
+// Test-Data
 // const stateData = [
+//   ['2022-04-02', 2000],
 //   ['2022-04-03', 2000, 102.5],
 //   ['2022-04-04', 2000],
 //   ['2022-04-05', 1000],
@@ -28,7 +33,17 @@ export const state = {
 //   ['2022-04-13', 1000],
 //   ['2022-04-15', 2000],
 //   ['2022-04-16', 1000],
-//   ['2022-04-14', 2000, 102.3],
+//   ['2022-04-17', 2000, 99.3],
+//   ['2022-04-18', 2000],
+//   ['2022-04-19', 1000],
+//   ['2022-04-20', 2000, 98.3],
+//   ['2022-04-21', 2000],
+//   ['2022-04-22', 1000],
+//   ['2022-04-23', 2000, 97.3],
+//   ['2022-04-24', 1000],
+//   ['2022-04-25', 2000, 96.1],
+//   ['2022-04-26', 1000],
+//   ['2022-04-27', 2000, 95.4],
 // ];
 
 // #region INITIALIZATION AND DATA PERSISTENCE
@@ -148,6 +163,28 @@ export const processKcalAccumulator = function () {
 // #endregion
 
 // #region Weight-View
+export const updateCountAllWeightData = function () {
+  state.allWeightValueDataCount = state.data.filter(
+    arr => arr.length >= 3
+  ).length;
+};
+
+export const updateFirstWeightResultToDisplay = function (firstToDisplay) {
+  if (
+    firstToDisplay < 1 ||
+    firstToDisplay >
+      state.allWeightValueDataCount - config.MAX_WEIGHT_RESULTS + 1
+  ) {
+    state.firstWeightResultToDisplay = 1;
+
+    return;
+  }
+
+  state.firstWeightResultToDisplay = firstToDisplay;
+};
+
+export const getWeightValueDataCount = () => state.allWeightValueDataCount;
+
 export const resetWeightValue = function () {
   state.weightValue = '';
 };
@@ -156,12 +193,10 @@ export const getWeightData = function (weightValue = '') {
   const data = {};
 
   data.weightValue = state.weightValue += weightValue;
-
-  // TODO: pagination beachten
-
   // #################################################
   // ['2022-04-16', 1805kcals, 102,3kg]
 
+  let occurrenceNr = 0;
   let foundStart = false;
   let foundNext = false;
   let nextIsNeverFound = true;
@@ -182,6 +217,7 @@ export const getWeightData = function (weightValue = '') {
     }
 
     if (state.data[i].length >= 3 && foundStart) {
+      occurrenceNr++;
       foundNext = true;
       nextIsNeverFound = false;
     }
@@ -190,6 +226,14 @@ export const getWeightData = function (weightValue = '') {
       currentMeasurment[1] = Math.round(currKcalsAcc / foundKcalsCount);
       currentMeasurment[3] = (lastWeightValue - state.data[i][2]).toFixed(1);
       measurements.push(currentMeasurment);
+
+      if (
+        occurrenceNr - state.firstWeightResultToDisplay >=
+        config.MAX_WEIGHT_RESULTS
+      ) {
+        break;
+      }
+
       currKcalsAcc = foundKcalsCount = 0;
       lastWeightValue = state.data[i][2];
       foundNext = false;
@@ -202,6 +246,12 @@ export const getWeightData = function (weightValue = '') {
     }
 
     if (state.data[i].length >= 3 && !foundStart) {
+      occurrenceNr++;
+
+      if (occurrenceNr < state.firstWeightResultToDisplay) {
+        continue;
+      }
+
       currentMeasurment = [
         state.data[i][0], //date
         undefined, // avg-kcals
@@ -221,25 +271,12 @@ export const getWeightData = function (weightValue = '') {
 
   // #################################################
 
-  // 1) arrays mit länge 3 (reversed) aus state.data
-  // const measurements = [];
-  // for (let i = state.data.length - 1; i >= 0; i--) {
-  //   if (state.data[i].length >= 3) measurements.push(state.data[i]);
-  // }
-
-  // // 2) push differece to arr
-  // for (let i = 0; i < measurements.length; i++) {
-  //   if (i !== measurements.length - 1) {
-  //     measurements[i][3] = (
-  //       measurements[i][2] - measurements[i + 1][2]
-  //     ).toFixed(1);
-  //   } else {
-  //     measurements[i][3] = 'k.A';
-  //   }
-  // }
-
   data.measurements = measurements;
-  console.log(data.measurements);
+
+  updateCountAllWeightData();
+  data.allWeightValueDataCount = state.allWeightValueDataCount;
+
+  data.firstWeightResultToDisplay = state.firstWeightResultToDisplay;
 
   return data;
 };

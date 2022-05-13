@@ -25,12 +25,20 @@ const controlNavKcal = function () {
 const controlNavWeight = function () {
   try {
     model.resetWeightValue();
+    model.updateFirstWeightResultToDisplay(1);
     weightView.render(model.getWeightData());
+    weightView.toggleScrollButtons();
     weightView.addHandlerNewWeightEntryClick(controlNewWeightDataEntry);
     weightView.addHandlerAbortClick(controlAbortWeightData);
     weightView.addHandlerAddWeightBtnClick(controlAddWeight);
     weightView.addHandlerResetWeightValueClick(controlResetWeightValue);
     weightView.addHandlerPersistWeightDataClick(controlPersistWeightData);
+    weightView.addHandlerScrollDown(controlScrollWeightData);
+    weightView.addHandlerScrollUp(controlScrollWeightData);
+    weightView.addHandlerScrolJumplUp(controlScrollWeightData);
+    weightView.addHandlerScrolDownUp(controlScrollWeightData);
+
+    // weightView._toggleScrollButtons();
   } catch (err) {
     // caloriesView.renderError();
     console.error(err);
@@ -120,7 +128,7 @@ const controlNewWeightDataEntry = function () {
     weightView.update(model.getWeightData());
     weightView.handleNumButtonsDisability(model.state.weightValue);
   } catch (err) {
-    // caloriesView.renderError();
+    // weightView.renderError();
     console.error(err);
   }
 };
@@ -131,7 +139,7 @@ const controlResetWeightValue = function () {
     weightView.update(model.getWeightData());
     weightView.handleNumButtonsDisability(model.state.weightValue);
   } catch (err) {
-    // caloriesView.renderError();
+    // weightView.renderError();
     console.error(err);
   }
 };
@@ -142,18 +150,29 @@ const controlAbortWeightData = function () {
     weightView.update(model.getWeightData());
     weightView.handleNumButtonsDisability(model.state.weightValue);
   } catch (err) {
-    // caloriesView.renderError();
+    // weightView.renderError();
+    console.error(err);
+  }
+};
+
+const controlScrollWeightData = function (firstWeightResultToDisplay) {
+  try {
+    model.updateFirstWeightResultToDisplay(firstWeightResultToDisplay);
+    weightView.update(model.getWeightData());
+    weightView.toggleScrollButtons();
+    // weightView.handleNumButtonsDisability(model.state.weightValue);
+  } catch (err) {
+    // weightView.renderError();
     console.error(err);
   }
 };
 
 const controlAddWeight = function (weightValue) {
   try {
-    // console.log(weightValue);
     weightView.update(model.getWeightData(weightValue));
     weightView.handleNumButtonsDisability(model.state.weightValue);
   } catch (err) {
-    // caloriesView.renderError();
+    // weightView.renderError();
     console.error(err);
   }
 };
@@ -163,9 +182,9 @@ const controlPersistWeightData = function () {
     model.processWeightValue();
     model.resetWeightValue();
     controlNavWeight.call(navigation);
-    // weightView.update(model.getWeightData());
+    weightView.update(model.getWeightData());
   } catch (err) {
-    // caloriesView.renderError();
+    // weightView.renderError();
     console.error(err);
   }
 };
@@ -179,5 +198,6 @@ const init = function () {
   navigation.addHandlerDnsClick(controlNavDNS);
   navigation.addHandlerDeleteClick(controlNavDelete);
   navigation.addHandlerDarkLightMode(controlNavDarkLightMode);
+  model.updateCountAllWeightData();
 };
 init();

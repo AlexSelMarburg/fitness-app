@@ -3,6 +3,8 @@ import * as help from '../helpers.js';
 import * as config from '../config.js';
 
 class WeightView extends View {
+  #numPadIsVisible = false;
+
   constructor() {
     super();
   }
@@ -12,7 +14,7 @@ class WeightView extends View {
       'click',
       function (e) {
         if (help.isButtonDisabled(e.target)) return;
-        help.wait(0.2).then(() => {
+        help.wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
           this._toggleAddWeightInputVisibility();
         });
         handler();
@@ -28,7 +30,7 @@ class WeightView extends View {
         'click',
         function (e) {
           // if (help.isButtonDisabled(e.target)) return;
-          help.wait(0.2).then(() => {
+          help.wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
             this._toggleAddWeightInputVisibility();
           });
           handler();
@@ -74,7 +76,7 @@ class WeightView extends View {
         if (!btn || help.isButtonDisabled(btn)) return;
 
         help.performUserInteractionFeedback(btn);
-        help.wait(0.2).then(() => {
+        help.wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
           this._toggleAddWeightInputVisibility();
           handler();
         });
@@ -133,9 +135,9 @@ class WeightView extends View {
   }
 
   _toggleAddWeightInputVisibility() {
-    document
-      .querySelector('.add-weight-button--container')
-      .classList.toggle('hidden');
+    const container = document.querySelector('.add-weight-button--container');
+
+    this.#numPadIsVisible = !container.classList.toggle('hidden');
 
     [
       'close-weight-data-container--button',
@@ -144,7 +146,117 @@ class WeightView extends View {
     ].forEach(id =>
       document.querySelector(`#${id}`)?.classList.toggle('hidden')
     );
+
+    this.toggleScrollButtons();
   }
+
+  //#region  SCROLL-BUTTONS
+  toggleScrollButtons() {
+    const scrollUpBtn = document.getElementById('scroll-up--button');
+    const scrollDownBtn = document.getElementById('scroll-down--button');
+    const jumpUpBtn = document.getElementById('scroll-jump-up--button');
+    const jumpDownBtn = document.getElementById('scroll-jump-down--button');
+
+    const btnCollection = [scrollDownBtn, scrollUpBtn, jumpDownBtn, jumpUpBtn];
+
+    if (this.#numPadIsVisible) {
+      btnCollection.forEach(btn => btn.classList.add('hidden'));
+      return;
+    } else {
+      btnCollection.forEach(btn => btn.classList.remove('hidden'));
+    }
+
+    if (
+      this._data.allWeightValueDataCount -
+        this._data.firstWeightResultToDisplay >=
+      config.MAX_WEIGHT_RESULTS
+    ) {
+      scrollDownBtn.classList.remove('disabled');
+      jumpDownBtn.classList.remove('disabled');
+    } else {
+      scrollDownBtn.classList.add('disabled');
+      jumpDownBtn.classList.add('disabled');
+    }
+
+    if (this._data.firstWeightResultToDisplay > 1) {
+      scrollUpBtn.classList.remove('disabled');
+      jumpUpBtn.classList.remove('disabled');
+    } else {
+      scrollUpBtn.classList.add('disabled');
+      jumpUpBtn.classList.add('disabled');
+    }
+  }
+
+  addHandlerScrollDown(handler) {
+    document.querySelector('.add-weight--container').addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('#scroll-down--button');
+
+        if (!btn || help.isButtonDisabled(btn)) return;
+
+        help.performUserInteractionFeedback(btn);
+        help.wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
+          handler(++this._data.firstWeightResultToDisplay);
+        });
+      }.bind(this)
+    );
+  }
+
+  addHandlerScrollUp(handler) {
+    document.querySelector('.add-weight--container').addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('#scroll-up--button');
+
+        if (!btn || help.isButtonDisabled(btn)) return;
+
+        help.performUserInteractionFeedback(btn);
+        help.wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
+          handler(--this._data.firstWeightResultToDisplay);
+        });
+      }.bind(this)
+    );
+  }
+
+  addHandlerScrolJumplUp(handler) {
+    document.querySelector('.add-weight--container').addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('#scroll-jump-up--button');
+
+        if (!btn || help.isButtonDisabled(btn)) return;
+
+        help.performUserInteractionFeedback(btn);
+        help.wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
+          handler((this._data.firstWeightResultToDisplay = 1));
+        });
+      }.bind(this)
+    );
+  }
+
+  addHandlerScrolDownUp(handler) {
+    document.querySelector('.add-weight--container').addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('#scroll-jump-down--button');
+
+        if (!btn || help.isButtonDisabled(btn)) return;
+
+        help.performUserInteractionFeedback(btn);
+        help.wait(config.USER_INTERACTION_ANIMATION_DURATION).then(() => {
+          handler(
+            (this._data.firstWeightResultToDisplay =
+              this._data.allWeightValueDataCount -
+              config.MAX_WEIGHT_RESULTS +
+              1)
+          );
+        });
+      }.bind(this)
+    );
+  }
+
+  //#endregion
 
   _generateMarkup() {
     return `  
@@ -190,10 +302,10 @@ class WeightView extends View {
      
       </div>
 
-      <button id="scroll-jump-up--button" class="button button-secondary hidden"></button>
-      <button id="scroll-jump-down--button" class="button button-secondary hidden"></button>
-      <button id="scroll-up--button" class="button button-secondary hidden"></button>
-      <button id="scroll-down--button" class="button button-secondary hidden"></button>
+      <button id="scroll-jump-up--button" class="button button-secondary disabled">⇈</button>
+      <button id="scroll-jump-down--button" class="button button-secondary disabled">⇊</button>
+      <button id="scroll-up--button" class="button button-secondary disabled">△</button>
+      <button id="scroll-down--button" class="button button-secondary disabled">▽</button>
 
       <button id="save-weight-data--button" class="button hidden">Speichern</button>
       <button id="close-weight-data-container--button" class="button hidden">Abbruch</button>
